@@ -3792,7 +3792,7 @@ header.cabecalho .logo-simbolo {
   color: #f4e7e8;
 
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   line-height: 1.25;
 
@@ -4009,8 +4009,8 @@ header.cabecalho::after {
 #painel-compromisso #lista-compromissos-hoje
 .compromisso-evento-cabecalho .compromisso-evento-titulo {
     font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 600;
     line-height: 1.1;
 
     color: #eff8f1;
@@ -4070,6 +4070,9 @@ header.cabecalho::after {
   box-sizing: border-box;
 
   color: #39d879;
+  transform-box: border-box;
+  transform-origin: top left;
+  transform: scale(0.85);
 
   background: transparent;
   border: none;
@@ -4214,8 +4217,8 @@ header.cabecalho::after {
 
     /* APROXIMAÇÃO DAS BORDAS */
     position: relative;
-    right: -7px;
-    top: -11px;
+    right: 1px;
+    top: -5px;
 
     padding: 0;
     background: transparent;
@@ -4248,7 +4251,7 @@ header.cabecalho::after {
 .compromisso-fixar svg {
     transform-box: border-box;
     transform-origin: left top;
-    transform: scale(1.15);
+    transform: scale(1.30);
 }
 
 /* ID: DARK-229 | REF: PANEL.COMMITMENT.PIN.BACKGROUND.REMOVE
@@ -5157,6 +5160,7 @@ left: -15px;
 
 /* LIBERA A ALTURA DO PAINEL LEMBRETE */
 #painel-lembrete {
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -5915,9 +5919,7 @@ left: -15px;
     min-height: 0;
   }
 
-  .card-painel-novo .rotina-coluna-semanal {
-    transform: none;
-  }
+  
 
   .card-painel-novo .rotina-coluna-periodos {
     display: grid;
@@ -7009,57 +7011,14 @@ letter-spacing: -0.3px;
     left: -43px;
 }
 
-/* BORDAS E POSICIONAMENTO DOS TÍTULOS — PRÓXIMOS LEMBRETES */
-
-/* PENDÊNCIAS — BORDA VERMELHA E DESLOCAMENTO */
+/* TÍTULOS DOS PRÓXIMOS LEMBRETES — REGRAS CONSOLIDADAS */
 #painel-lembrete #card-lembrete-pendencias > h3 {
     border: 1px solid rgba(255, 120, 130, .75);
     border-radius: 4px;
-    transform: translate(-90px, 1px);
+    transform: translate(-90px, 0px);
 }
 
-/* ONTEM E HOJE — BORDAS VERDES */
 #painel-lembrete #card-lembrete-ontem > h3,
-#painel-lembrete #card-lembrete-hoje > h3 {
-    border: 1px solid rgba(126, 214, 103, .55);
-    border-radius: 4px;
-}
-
-/* PENDÊNCIAS — BORDA VERMELHA E DESLOCAMENTO */
-#painel-lembrete #card-lembrete-pendencias > h3 {
-    border: 1px solid rgba(255, 120, 130, .75);
-    border-radius: 4px;
-    transform: translate(-90px, 1px);
-}
-
-/* ONTEM — BORDA VERDE E DESLOCAMENTO */
-#painel-lembrete #card-lembrete-ontem > h3 {
-    border: 1px solid rgba(126, 214, 103, .55);
-    border-radius: 4px;
-    transform: translate(-90px, 0px);
-}
-
-/* HOJE — BORDA VERDE */
-#painel-lembrete #card-lembrete-hoje > h3 {
-    border: 1px solid rgba(126, 214, 103, .55);
-    border-radius: 4px;
-}
-
-/* PENDÊNCIAS — BORDA VERMELHA E DESLOCAMENTO */
-#painel-lembrete #card-lembrete-pendencias > h3 {
-    border: 1px solid rgba(255, 120, 130, .75);
-    border-radius: 4px;
-    transform: translate(-90px, 0px);
-}
-
-/* ONTEM — BORDA VERDE E DESLOCAMENTO */
-#painel-lembrete #card-lembrete-ontem > h3 {
-    border: 1px solid rgba(126, 214, 103, .55);
-    border-radius: 4px;
-    transform: translate(-90px, 0px);
-}
-
-/* HOJE — BORDA VERDE E DESLOCAMENTO */
 #painel-lembrete #card-lembrete-hoje > h3 {
     border: 1px solid rgba(126, 214, 103, .55);
     border-radius: 4px;
@@ -7127,20 +7086,10 @@ letter-spacing: -0.3px;
     font-size: 10px;
 }
 
-/* TESTE DE POSICIONAMENTO — DIAS DA SEMANA */
-#painel-lembrete {
-    position: relative;
-}
-
 /* ==========================================================
    LEMBRETE — DIAS DA SEMANA
    NEUMORFISMO EXTERNO SUAVE
 ========================================================== */
-
-/* REFERÊNCIA DE POSICIONAMENTO */
-#painel-lembrete {
-    position: relative;
-}
 
 /* QUADRO VERTICAL */
 #painel-lembrete #lembrete-semana-vertical {
@@ -7930,13 +7879,13 @@ letter-spacing: -0.3px;
   }
 }
 
-/* ID: DARK-214 | REF: PANEL.FINANCIAL.TODAY_AGENDA | ÂNCORA DA BARRA */
+/* ID: DARK-256 | REF: PANEL.FINANCIAL.TODAY_AGENDA | ÂNCORA DA BARRA */
 
 #agenda-financeiro-hoje.compromisso-agenda-financeiro {
     position: relative;
 }
 
-/* ID: DARK-215 | REF: PANEL.FINANCIAL.TODAY_AGENDA | FUNDO TRANSPARENTE */
+/* ID: DARK-257 | REF: PANEL.FINANCIAL.TODAY_AGENDA | FUNDO TRANSPARENTE */
 
 #container-agenda-financeiro-hoje,
 #container-agenda-financeiro-hoje > #agenda-financeiro-hoje {
@@ -7947,13 +7896,13 @@ letter-spacing: -0.3px;
     box-shadow: none;
 }
 
-/* ID: DARK-216 | REF: PANEL.FINANCIAL.TODAY_AGENDA | DESLOCAMENTO */
+/* ID: DARK-258 | REF: PANEL.FINANCIAL.TODAY_AGENDA | DESLOCAMENTO */
 
 #container-agenda-financeiro-hoje {
     transform: translateX(10px);
 }
 
-/* ID: DARK-217 | CABEÇALHO FINANCEIRO — LARGURA VISUAL */
+/* ID: DARK-259 | CABEÇALHO FINANCEIRO — LARGURA VISUAL */
 
 .card-financeiro > .financeiro-agenda-hoje-wrap
 #agenda-financeiro-hoje > .compromisso-agenda-cabecalho {
@@ -7999,7 +7948,7 @@ letter-spacing: -0.3px;
     pointer-events: none;
 }
 
-/* ID: DARK-218 | SETAS DENTRO DO CAMPO CONTAS */
+/* ID: DARK-260 | SETAS DENTRO DO CAMPO CONTAS */
 
 #container-agenda-financeiro-hoje
 .compromisso-agenda-seta:first-child {
@@ -8011,25 +7960,25 @@ letter-spacing: -0.3px;
     right: calc(11% + 3px);
 }
 
-/* ID: DARK-219 | SETAS — AJUSTE VERTICAL */
+/* ID: DARK-261 | SETAS — AJUSTE VERTICAL */
 
 #container-agenda-financeiro-hoje .compromisso-agenda-seta {
     top: calc(50% - 3px);
 }
 
-/* ID: DARK-220 | ÍCONE FINANCEIRO — AJUSTE HORIZONTAL */
+/* ID: DARK-262 | ÍCONE FINANCEIRO — AJUSTE HORIZONTAL */
 
 #container-agenda-financeiro-hoje .compromisso-calendario-icone {
     transform: translateX(-15px);
 }
 
-/* ID: DARK-221 | TÍTULO CONTAS — AJUSTE HORIZONTAL */
+/* ID: DARK-263 | TÍTULO CONTAS — AJUSTE HORIZONTAL */
 
 #container-agenda-financeiro-hoje .compromisso-agenda-cabecalho h3 {
     transform: translateX(-4px);
 }
 
-/* ID: DARK-222 | TÍTULO CONTAS — PESO DA FONTE */
+/* ID: DARK-264 | TÍTULO CONTAS — PESO DA FONTE */
 
 #container-agenda-financeiro-hoje
 .compromisso-agenda-cabecalho h3,
@@ -8038,7 +7987,7 @@ letter-spacing: -0.3px;
     font-weight: 600;
 }
 
-/* ID: DARK-223 | ÍCONES FINANCEIROS — REDUÇÃO DE TAMANHO */
+/* ID: DARK-265 | ÍCONES FINANCEIROS — REDUÇÃO DE TAMANHO */
 
 #lista-financeiro-hoje
 .compromisso-evento-cabecalho > svg {
@@ -8050,7 +7999,7 @@ letter-spacing: -0.3px;
     transform: translate(-5px, -8px) scale(.85);
 }
 
-/* ID: DARK-224 | ALTURA DOS 3 CARDS FINANCEIROS */
+/* ID: DARK-266 | ALTURA DOS 3 CARDS FINANCEIROS */
 #lista-financeiro-hoje .compromisso-evento {
     min-height: 72px;
     box-sizing: border-box;
