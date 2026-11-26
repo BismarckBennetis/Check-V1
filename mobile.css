@@ -2469,10 +2469,10 @@ ESCOPO: SOMENTE MOBILE
 
         #painel-compromisso #lista-compromissos-hoje
         .compromisso-evento .compromisso-evento-dados {
-            grid-template-columns: minmax(0, 4fr) minmax(0, 2fr);
+            grid-template-columns: repeat(10, minmax(0, 1fr));
             grid-template-areas:
-                "local data"
-                "horario horario";
+                "local local local local local local data data data data"
+                "horario horario horario aviso aviso aviso aviso aviso aviso aviso";
             column-gap: 8px;
             row-gap: 10px;
             align-items: stretch;
@@ -2520,9 +2520,24 @@ ESCOPO: SOMENTE MOBILE
         .compromisso-evento .compromisso-evento-dados
         > .compromisso-evento-dado:nth-child(3) {
             grid-area: horario;
-            width: 35%;
+            width: auto;
             min-width: 0;
-            justify-self: start;
+            justify-self: stretch;
+            margin: 0;
+        }
+
+        /* AVISO — OCUPA A ÁREA DIREITA DA LINHA INFERIOR */
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-aviso,
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-aviso {
+            grid-area: aviso;
+            width: auto;
+            min-width: 0;
+            justify-self: stretch;
             margin: 0;
         }
     }
@@ -2570,10 +2585,10 @@ ESCOPO: SOMENTE MOBILE
         > .compromisso-pendencia-item
         > .compromisso-evento-dados {
             display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            grid-template-columns: repeat(10, minmax(0, 1fr));
             grid-template-areas:
-                "local data"
-                "horario horario";
+                "local local local local local local data data data data"
+                "horario horario horario aviso aviso aviso aviso aviso aviso aviso";
             column-gap: 6px;
             row-gap: 4px;
             align-items: stretch;
@@ -2621,7 +2636,160 @@ ESCOPO: SOMENTE MOBILE
             grid-area: horario;
             justify-self: stretch;
         }
+
+        /* AVISO — DIREITA DO HORÁRIO */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-aviso {
+            grid-area: aviso;
+            justify-self: stretch;
+        }
     }
 
+    /* MOB-108 | REF: PANEL.COMMITMENT.REMINDER_FIELD
+       CAMPO DE AVISO COM DOIS RÓTULOS FLUTUANTES — SEM ÍCONES */
+    .compromisso-evento-aviso {
+        display: none;
+    }
+
+    @media (max-width: 652px) {
+        #painel-compromisso .compromisso-evento-dados
+        > .compromisso-evento-aviso {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr);
+            align-items: center;
+            gap: 4px;
+            min-width: 0;
+            min-height: 22px;
+            padding: 1px 5px 0;
+            box-sizing: border-box;
+            overflow: visible;
+        }
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+            padding: 0;
+        }
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo > span {
+
+            position: absolute;
+            top: -6px;
+            left: 7px;
+            z-index: 2;
+
+            display: inline-block;
+            width: max-content;
+            max-width: calc(100% - 14px);
+
+            padding: 0 4px;
+
+            border: 1px solid;
+            border-radius: 3px;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 1px;
+            font-weight: 700;
+            line-height: 13.75px;
+
+            white-space: nowrap;
+            transform: none;
+        }
+
+        /* ==========================================================
+   MOB-109 — ALINHAMENTO DOS TÍTULOS DO AVISO
+   REFERÊNCIA VISUAL: TÍTULO HORÁRIO
+========================================================== */
+
+        /* ESTICAR OS CAMPOS INTERNOS */
+        #painel-compromisso .compromisso-evento-aviso {
+            align-items: stretch;
+        }
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo {
+            align-self: stretch;
+            min-height: 24px;
+        }
+
+        /* ME AVISE E ÀS — MESMA POSIÇÃO DE REFERÊNCIA */
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo:first-child > span,
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo:last-child > span {
+
+            position: absolute;
+
+            top: -13px;
+            left: 2px;
+            right: auto;
+            bottom: auto;
+
+            transform: none;
+
+            font-size: 9px;
+            font-weight: 700;
+            line-height: 12px;
+
+            margin: 0;
+        }
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo > strong {
+            position: relative;
+            z-index: 1;
+            display: block;
+            min-width: 0;
+            color: #e7f1e9;
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* HOJE/ONTEM — CONTORNO E RÓTULOS VERDES */
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento-dados > .compromisso-evento-aviso,
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento-dados > .compromisso-evento-aviso {
+            border-color: rgba(80, 220, 115, .65);
+        }
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento-aviso .compromisso-aviso-campo > span,
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento-aviso .compromisso-aviso-campo > span {
+            border-color: #39ed80;
+            background: #101812;
+            color: #39ed80;
+        }
+
+        /* PENDENTES — RÓTULOS VERMELHOS */
+        #painel-compromisso #lista-compromissos-pendentes
+        .compromisso-evento-aviso .compromisso-aviso-campo > span {
+            border-color: rgba(224, 87, 96, .7);
+            background: #241316;
+            color: #ff9ba2;
+        }
+
+        /* PENDENTES — TEXTO NO TOM DOS DEMAIS CAMPOS */
+        #painel-compromisso #lista-compromissos-pendentes
+        .compromisso-evento-aviso .compromisso-aviso-campo > strong {
+            color: #f4e7e8;
+        }
+    }
 
 } /* Fecha @layer responsive */
