@@ -2696,9 +2696,9 @@ ESCOPO: SOMENTE MOBILE
             border-radius: 3px;
 
             font-family: "Segoe UI", Arial, sans-serif;
-            font-size: 1px;
+            font-size: 9px;
             font-weight: 700;
-            line-height: 13.75px;
+            line-height: 12px;
 
             white-space: nowrap;
             transform: none;
@@ -2751,9 +2751,9 @@ ESCOPO: SOMENTE MOBILE
             min-width: 0;
             color: #e7f1e9;
             font-family: "Segoe UI", Arial, sans-serif;
-            font-size: 9px;
-            font-weight: 700;
-            line-height: 1.1;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 13.75px;
             text-align: center;
             white-space: nowrap;
             overflow: hidden;
