@@ -2045,10 +2045,24 @@
         /* MOB-095 — DESLOCAR SOMENTE O RÓTULO PENDENTES */
         #painel-compromisso .compromisso-pendencias
         > .compromisso-pendencias-rotulo {
-            top: -7px;
+            top: -20px;
+            font-size: 18px;
+            background: #1b1012;
 
             left: 55%;
             translate: -50% 0;
+            border: none;
+            border-radius: 10px;
+
+            width: max-content;
+            min-width: 62px;
+
+            height: auto;
+            min-height: 28px;
+            padding: 1px 6px;
+
+            line-height: 13px;
+            box-sizing: border-box;
         }
 
         #painel-lembrete .lembrete-proximos-titulo {
@@ -2450,11 +2464,10 @@ ESCOPO: SOMENTE MOBILE
 
     /* CONTÊINER PENDENTES */
     #painel-compromisso .compromisso-pendencias {
-        top: 40px;
+        top: 50px;
     }
 
 }
-
 
     /* ==========================================================
        MOB-106 | REF: PANEL.COMMITMENT.EVENT.FIELDS.MOBILE
@@ -2492,7 +2505,7 @@ ESCOPO: SOMENTE MOBILE
             justify-self: stretch;
             left: auto;
             top: auto;
-            transform: none;
+            transform: translateY(-4px);
             margin: 0;
         }
 
@@ -2509,6 +2522,7 @@ ESCOPO: SOMENTE MOBILE
             min-width: 0;
             justify-self: stretch;
             margin: 0;
+            transform: translateY(-4px);
         }
 
         /* HORÁRIO — SEGUNDA LINHA INTEIRA */
@@ -2617,15 +2631,26 @@ ESCOPO: SOMENTE MOBILE
         > .compromisso-evento-dado:nth-child(1) {
             grid-area: local;
             justify-self: stretch;
+
+            height: 28px;
+            min-height: 28px;
+
+            box-sizing: border-box;
+            transform: translateY(-10px);
         }
 
-        /* DATA — SEGUNDA COLUNA */
         #painel-compromisso #lista-compromissos-pendentes
         > .compromisso-pendencia-item
         > .compromisso-evento-dados
         > .compromisso-evento-dado:nth-child(2) {
             grid-area: data;
             justify-self: stretch;
+
+            height: 28px;
+            min-height: 28px;
+
+            box-sizing: border-box;
+            transform: translateY(-10px);
         }
 
         /* HORÁRIO — LINHA INFERIOR INTEIRA */
@@ -2661,7 +2686,7 @@ ESCOPO: SOMENTE MOBILE
             align-items: center;
             gap: 4px;
             min-width: 0;
-            min-height: 22px;
+            min-height: 16px;
             padding: 1px 5px 0;
             box-sizing: border-box;
             overflow: visible;
@@ -2705,9 +2730,9 @@ ESCOPO: SOMENTE MOBILE
         }
 
         /* ==========================================================
-   MOB-109 — ALINHAMENTO DOS TÍTULOS DO AVISO
-   REFERÊNCIA VISUAL: TÍTULO HORÁRIO
-========================================================== */
+        MOB-109 — ALINHAMENTO DOS TÍTULOS DO AVISO
+        REFERÊNCIA VISUAL: TÍTULO HORÁRIO
+        ========================================================== */
 
         /* ESTICAR OS CAMPOS INTERNOS */
         #painel-compromisso .compromisso-evento-aviso {
@@ -2717,7 +2742,7 @@ ESCOPO: SOMENTE MOBILE
         #painel-compromisso .compromisso-evento-aviso
         .compromisso-aviso-campo {
             align-self: stretch;
-            min-height: 24px;
+            min-height: 16px;
         }
 
         /* ME AVISE E ÀS — MESMA POSIÇÃO DE REFERÊNCIA */
@@ -2729,7 +2754,7 @@ ESCOPO: SOMENTE MOBILE
 
             position: absolute;
 
-            top: -13px;
+            top: -9px;
             left: 2px;
             right: auto;
             bottom: auto;
