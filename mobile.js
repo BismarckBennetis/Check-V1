@@ -13,10 +13,6 @@
     var botaoMenu = document.querySelector("[data-menu-lateral-toggle]");
     var painelLateral = document.getElementById("painel-esquerdo");
 
-    if (!botaoMenu || !painelLateral) {
-        return;
-    }
-
     var mediaMobile = typeof window.matchMedia === "function"
         ? window.matchMedia("(max-width: " + BREAKPOINT_MOBILE + "px)")
         : null;
@@ -26,6 +22,8 @@
             ? mediaMobile.matches
             : window.innerWidth <= BREAKPOINT_MOBILE;
     }
+
+    if (botaoMenu && painelLateral) {
 
     function atualizarEstado(aberto, animarEntrada) {
 
@@ -119,6 +117,8 @@
         atualizarEstado(!painelLateral.hidden, false);
 
     }, false);
+
+    }
 
     /* ==========================================================
    MOBJS-003 | REF: PANEL.FINANCIAL.DUE_DATE.MOBILE

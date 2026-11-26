@@ -43,8 +43,7 @@ var nomesMeses = [
 /* Obtém o mês atual e o ano atual */
 var mesAtual = hoje.getMonth();
 var anoAtual = hoje.getFullYear();
-/* Calcula o primeiro dia do próximo mês */
-var proximoMes = new Date(anoAtual, mesAtual + 1, 1);
+
 /* ==================================================
   PREENCHER OS DIAS DOS CALENDÁRIOS
   Objetivo: mostrar os dias da semana e os números
@@ -112,10 +111,8 @@ function preencherCalendario(identificador, mes, ano) {
         gradeDias.appendChild(celulaDia);
     }
 }
-/* Preenche o calendário do mês atual. */
+/* Preenche o único calendário da versão mobile. */
 preencherCalendario("#calendario-atual", mesAtual, anoAtual);
-/* Preenche o calendário do próximo mês. */
-preencherCalendario("#calendario-proximo", proximoMes.getMonth(), proximoMes.getFullYear());
 
 /* ID: JS-003 | REF: PANEL.CALENDAR.MONTH_NAVIGATION | NAVEGAÇÃO MENSAL */
 
@@ -226,15 +223,41 @@ function verificarDataEAgendarAtualizacao() {
     anoData.textContent = agora.getFullYear();
     /* O feriado destaca somente o número do dia no campo de data. */
     diaData.classList.toggle("feriado-nacional", ehFeriadoNacional(agora));
-    var mudouDia = agora.getFullYear() !== hoje.getFullYear() ||
-        agora.getMonth() !== hoje.getMonth() ||
-        agora.getDate() !== hoje.getDate();
-    if (mudouDia) {
-        hoje = agora;
+    var mudouMes = agora.getFullYear() !== hoje.getFullYear() ||
+    agora.getMonth() !== hoje.getMonth();
+
+var mudouDia = mudouMes ||
+    agora.getDate() !== hoje.getDate();
+
+if (mudouDia) {
+
+    hoje = agora;
+
+    if (mudouMes) {
+
+        mesAtual = agora.getMonth();
+        anoAtual = agora.getFullYear();
+
+        preencherCalendario(
+            "#calendario-atual",
+            mesAtual,
+            anoAtual
+        );
+
+    } else {
+
         calendarios.forEach(function (calendario) {
-            preencherCalendario("#" + calendario.id, Number(calendario.dataset.mes), Number(calendario.dataset.ano));
+
+            preencherCalendario(
+                "#" + calendario.id,
+                Number(calendario.dataset.mes),
+                Number(calendario.dataset.ano)
+            );
+
         });
+
     }
+}
     clearTimeout(temporizadorAtualizacao);
     var proximoMinuto = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate(), agora.getHours(), agora.getMinutes() + 1);
     temporizadorAtualizacao = setTimeout(verificarDataEAgendarAtualizacao, proximoMinuto.getTime() - agora.getTime());
