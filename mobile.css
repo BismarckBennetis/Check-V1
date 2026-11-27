@@ -2475,11 +2475,13 @@ ESCOPO: SOMENTE MOBILE
         max-width: 96%;
         min-width: 0;
 
-        height: 37px;
+        height: 70px;
 
         flex: 0 1 96%;
 
         margin: 0 auto;
+        transform: translateY(-18px);
+
 
         box-sizing: border-box;
     }
@@ -2498,6 +2500,13 @@ ESCOPO: SOMENTE MOBILE
     #painel-compromisso .compromisso-prioridade-slot
     .estudo-prioridade-rotulo {
         white-space: nowrap;
+    }
+
+    /* CHECK — COMPROMISSO — SUBIR ÍCONE DA PRIORIDADE */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .estudo-prioridade-icone {
+        transform: translate(3px, -1.5px);
     }
 
     /* ÁREA VAZIA — PRESERVA A POSIÇÃO ORIGINAL NO MOBILE */
