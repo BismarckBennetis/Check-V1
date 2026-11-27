@@ -2940,6 +2940,14 @@ ESCOPO: SOMENTE MOBILE
             left: calc(50% - 50px);
         }
 
+        /* HORÁRIO — SUBIR SOMENTE O TÍTULO */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(3) > span {
+            top: -9px;
+        }
+
         /* DATA — MANTER POSIÇÃO ATUAL */
         #painel-compromisso #lista-compromissos-pendentes
         > .compromisso-pendencia-item
@@ -3095,7 +3103,7 @@ ESCOPO: SOMENTE MOBILE
 
             position: absolute;
 
-            top: -9px;
+            top: -12px;
             left: 2px;
             right: auto;
             bottom: auto;
@@ -3107,6 +3115,18 @@ ESCOPO: SOMENTE MOBILE
             line-height: 12px;
 
             margin: 0;
+        }
+
+        /* SUBIR SOMENTE O TÍTULO ÀS */
+        #painel-compromisso .compromisso-evento-aviso
+        .comcompromisso-aviso-campo:last-child > span {
+            top: -2px;
+        }
+
+        /* SUBIR SOMENTE O TÍTULO ME AVISE */
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo:first-child > span {
+            top: -12px;
         }
 
         #painel-compromisso .compromisso-evento-aviso
