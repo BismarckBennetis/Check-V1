@@ -24,6 +24,30 @@
       rel="stylesheet"
     />
 
+     <!-- MOB-RESTORE — EVITAR FLASH DO PRIMEIRO PAINEL -->
+  <script>
+  (function () {
+      try {
+          if (!window.matchMedia("(max-width: 652px)").matches) return;
+
+          var salvo = sessionStorage.getItem("check_mobile_painel_ativo");
+          var indice = Number(salvo);
+
+          if (
+              salvo !== null &&
+              salvo.trim() !== "" &&
+              Number.isInteger(indice) &&
+              indice >= 0 &&
+              indice <= 4
+          ) {
+              document.documentElement.classList.add(
+                  "check-restaurando-painel"
+              );
+          }
+      } catch (erro) {}
+  })();
+  </script>
+
     <!-- Arquivo CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tema-dark.css">
@@ -3589,51 +3613,6 @@ M 124 31 L 131 31 L 136 33 L 142 39 L 144 44 L 144 99 L 142 104 L 136 110 L 131 
                   <span class="compromisso-categoria-seta" aria-hidden="true">›</span>
                 </div>
 
-                <!-- ID: HTML-099 | REF: PANEL.COMMITMENT.CATEGORY.URGENT -->
-                <div class="compromisso-categoria compromisso-categoria-urgente">
-                  <span aria-hidden="true">
-                    <svg
-                      class="estudo-prioridade-icone compromisso-urgente-icone"
-                      viewBox="-4 -18 279 281"
-                      width="22"
-                      height="22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        stroke="currentColor"
-                        stroke-width="13"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <rect x="140" y="36" width="121" height="36"
-                          rx="12" transform="rotate(45 200.5 54)"/>
-
-                        <path d="M101 94 L147 48"/>
-                        <path d="M177 70 L205 104"/>
-
-                        <path d="
-        M101 94
-        C80 89 53 91 34 101
-        C18 110 16 122 29 135
-        L59 163
-        L4 251
-        L95 198
-        L124 229
-        C136 241 149 233 156 217
-        C163 201 165 178 164 157
-        L205 105
-      "/>
-
-                        <path d="M59 163 L95 198"/>
-                        <path d="M61 121 C70 114 84 114 94 121"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <strong>Urgente</strong>
-                  <span class="compromisso-categoria-seta" aria-hidden="true">›</span>
-                </div>
-
               </nav>
 
               <span class="botao-detalhes">
@@ -3711,7 +3690,7 @@ M 124 31 L 131 31 L 136 33 L 142 39 L 144 44 L 144 99 L 142 104 L 136 110 L 131 
         </svg>
 
         <strong class="estudo-prioridade-texto">
-            Algebra Linear
+            Consulta
         </strong>
 
     </div>

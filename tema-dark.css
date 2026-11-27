@@ -2642,19 +2642,6 @@ header.cabecalho .logo-simbolo {
   text-align: right;
 }
 
-#painel-compromisso .compromisso-categoria-urgente {
-  background: linear-gradient(
-    145deg,
-    #174c2d,
-    #0b351e 65%,
-    #082817
-  );
-}
-
-#painel-compromisso .compromisso-categoria-urgente > span:first-child {
-  color: #ff505a;
-}
-
 /* CARTÕES DE ONTEM E HOJE */
 #painel-compromisso .compromisso-agenda {
   display: flex;
@@ -3267,12 +3254,6 @@ header.cabecalho .logo-simbolo {
 
 #painel-compromisso .compromisso-urgente-icone * {
   stroke: #ff505a;
-}
-
-/* TEXTO URGENTE — VERMELHO */
-
-#painel-compromisso .compromisso-categoria-urgente > strong {
-  color: #ff505a;
 }
 
 /* ID: DARK-206 | REF: PANEL.COMMITMENT.CATEGORIES.3D.INTERACTION */
