@@ -159,4 +159,192 @@
     }
 
     configurarEfeitoProfundidadeCarrossel();
+
+        /* ==========================================================
+       MOBJS-004 | RESTAURAR PAINEL ATIVO APÓS ATUALIZAÇÃO
+       REF: APP.MOBILE.CAROUSEL.STATE.RESTORE
+
+       FUNÇÃO:
+       - Salvar o painel atualmente selecionado.
+       - Preservar a seleção durante a atualização da página.
+       - Restaurar o mesmo painel após o carregamento.
+       - Não alterar a estrutura nem a posição dos painéis.
+    ========================================================== */
+
+    function configurarRestauracaoPainelAtivo() {
+
+        var faixaCarrossel = document.querySelector(".grade-cards");
+
+        if (!faixaCarrossel) return;
+
+        var paineis = [];
+
+        for (var i = 0; i < faixaCarrossel.children.length; i++) {
+
+            var painel = faixaCarrossel.children[i];
+
+            var id = painel.getAttribute("id");
+            var classes = painel.classList;
+
+            if (
+                classes.contains("card-financeiro") ||
+                classes.contains("card-estudo") ||
+                id === "painel-rotina" ||
+                id === "painel-compromisso" ||
+                id === "painel-lembrete"
+            ) {
+                paineis.push(painel);
+            }
+        }
+
+        if (!paineis.length) return;
+
+        var CHAVE_ESTADO = "check_mobile_painel_ativo";
+
+        var bloquearGravacao = true;
+        var indiceSalvo = null;
+
+
+        /* LER PAINEL SALVO */
+
+        try {
+
+            var estadoSalvo = sessionStorage.getItem(CHAVE_ESTADO);
+
+            if (estadoSalvo !== null) {
+
+                var numeroSalvo = Number(estadoSalvo);
+
+                if (
+                    Number.isInteger(numeroSalvo) &&
+                    numeroSalvo >= 0 &&
+                    numeroSalvo < paineis.length
+                ) {
+                    indiceSalvo = numeroSalvo;
+                }
+            }
+
+        } catch (erro) {
+            indiceSalvo = null;
+        }
+
+
+        /* CALCULAR DISTÂNCIA ENTRE OS PAINÉIS */
+
+        function obterPassoPainel() {
+
+            var estilo = window.getComputedStyle(faixaCarrossel);
+
+            var espacamento = parseFloat(estilo.columnGap) || 0;
+
+            return paineis[0].offsetWidth + espacamento;
+        }
+
+
+        /* IDENTIFICAR PAINEL ATUAL */
+
+        function obterIndiceAtual() {
+
+            var passo = obterPassoPainel();
+
+            if (!passo) return 0;
+
+            var indice = Math.round(
+                faixaCarrossel.scrollLeft / passo
+            );
+
+            return Math.max(
+                0,
+                Math.min(paineis.length - 1, indice)
+            );
+        }
+
+
+        /* SALVAR PAINEL ATIVO */
+
+        function salvarPainelAtivo() {
+
+            if (bloquearGravacao) return;
+
+            try {
+
+                sessionStorage.setItem(
+                    CHAVE_ESTADO,
+                    String(obterIndiceAtual())
+                );
+
+            } catch (erro) {
+                /* Armazenamento indisponível. */
+            }
+        }
+
+
+        /* ESCUTAR NAVEGAÇÃO ENTRE OS PAINÉIS */
+
+        faixaCarrossel.addEventListener(
+            "scroll",
+            salvarPainelAtivo,
+            { passive: true }
+        );
+
+
+        /* SALVAR TAMBÉM ANTES DE SAIR OU ATUALIZAR */
+
+        window.addEventListener(
+            "pagehide",
+            salvarPainelAtivo
+        );
+
+
+        /* RESTAURAR PAINEL ANTERIOR */
+
+        function restaurarPainelAtivo() {
+
+            if (indiceSalvo === null) {
+
+                bloquearGravacao = false;
+                return;
+            }
+
+            window.requestAnimationFrame(function () {
+
+                var passo = obterPassoPainel();
+
+                if (passo > 0) {
+
+                    faixaCarrossel.scrollLeft =
+                        indiceSalvo * passo;
+                }
+
+                window.requestAnimationFrame(function () {
+
+                    bloquearGravacao = false;
+
+                    salvarPainelAtivo();
+
+                });
+
+            });
+        }
+
+
+        /* ESPERAR O CARREGAMENTO DA PÁGINA */
+
+        if (document.readyState === "complete") {
+
+            restaurarPainelAtivo();
+
+        } else {
+
+            window.addEventListener(
+                "load",
+                restaurarPainelAtivo,
+                { once: true }
+            );
+
+        }
+    }
+
+    configurarRestauracaoPainelAtivo();
+
 })();
