@@ -1,338 +1,162 @@
 /* ==========================================================
-   CHECK.IN — MOBILE.JS
-   ID: MOBJS-001 | REF: APP.SIDEBAR.TOGGLE
-   Responsabilidade: controlar abertura e recolhimento
-   do painel lateral e sua animação de entrada.
+   CHECK — MOBILE.JS
+   Responsabilidade: comportamentos exclusivos da interface mobile.
+   - abertura e recolhimento do menu lateral;
+   - formato curto das datas de vencimento;
+   - efeito de profundidade no carrossel horizontal.
 ========================================================== */
 
 (function () {
     "use strict";
 
-    var BREAKPOINT_MOBILE = 652;
-
+    /* ==========================================================
+       MOBJS-001 | MENU LATERAL MOBILE
+    ========================================================== */
     var botaoMenu = document.querySelector("[data-menu-lateral-toggle]");
     var painelLateral = document.getElementById("painel-esquerdo");
 
-    var mediaMobile = typeof window.matchMedia === "function"
-        ? window.matchMedia("(max-width: " + BREAKPOINT_MOBILE + "px)")
-        : null;
-
-    function estaNoMobile() {
-        return mediaMobile
-            ? mediaMobile.matches
-            : window.innerWidth <= BREAKPOINT_MOBILE;
-    }
-
     if (botaoMenu && painelLateral) {
+        function atualizarEstado(aberto, animarEntrada) {
+            var estavaFechado = painelLateral.hidden;
+            painelLateral.hidden = !aberto;
 
-    function atualizarEstado(aberto, animarEntrada) {
+            if (aberto && animarEntrada && estavaFechado) {
+                painelLateral.classList.remove("painel-abrindo");
+                /* Reinicia a animação a cada abertura. */
+                void painelLateral.offsetWidth;
+                painelLateral.classList.add("painel-abrindo");
+            } else if (!aberto) {
+                painelLateral.classList.remove("painel-abrindo");
+            }
 
-        /* No desktop, o painel permanece sempre visível. */
-        if (!estaNoMobile()) {
-            painelLateral.classList.remove("painel-abrindo");
-            painelLateral.hidden = false;
-
-            botaoMenu.setAttribute("aria-expanded", "true");
-            botaoMenu.setAttribute("aria-label", "Menu lateral");
-
-            return;
+            botaoMenu.setAttribute("aria-expanded", aberto ? "true" : "false");
+            botaoMenu.setAttribute(
+                "aria-label",
+                aberto ? "Recolher menu lateral" : "Abrir menu lateral"
+            );
         }
 
-        var estavaFechado = painelLateral.hidden;
-
-        painelLateral.hidden = !aberto;
-
-        /* MOBJS-002 — Animação de entrada do painel */
-        if (aberto && animarEntrada && estavaFechado) {
-
-            painelLateral.classList.remove("painel-abrindo");
-
-            /* Reinicia a animação a cada abertura. */
-            void painelLateral.offsetWidth;
-
-            painelLateral.classList.add("painel-abrindo");
-
-        } else if (!aberto) {
-
-            painelLateral.classList.remove("painel-abrindo");
-
-        }
-
-        botaoMenu.setAttribute(
-            "aria-expanded",
-            aberto ? "true" : "false"
-        );
-
-        botaoMenu.setAttribute(
-            "aria-label",
-            aberto ? "Recolher menu lateral" : "Abrir menu lateral"
-        );
-    }
-
-    /* Estado inicial: painel fechado no mobile. */
-    atualizarEstado(false, false);
-
-    /* Botão Menu. */
-    botaoMenu.addEventListener("click", function () {
-
-        if (!estaNoMobile()) return;
-
-        atualizarEstado(painelLateral.hidden, true);
-
-    });
-
-    /* Clique fora recolhe o painel. */
-    document.addEventListener("click", function (evento) {
-
-        if (!estaNoMobile() || painelLateral.hidden) return;
-
-        if (
-            painelLateral.contains(evento.target) ||
-            botaoMenu.contains(evento.target)
-        ) {
-            return;
-        }
-
+        /* O menu inicia recolhido no Check mobile. */
         atualizarEstado(false, false);
 
-    }, false);
+        botaoMenu.addEventListener("click", function () {
+            atualizarEstado(painelLateral.hidden, true);
+        });
 
-    /* Escape recolhe o painel. */
-    document.addEventListener("keydown", function (evento) {
-
-        if (!estaNoMobile() || painelLateral.hidden) return;
-
-        if (evento.key === "Escape" || evento.key === "Esc") {
-
+        /* Clique fora recolhe o menu aberto. */
+        document.addEventListener("click", function (evento) {
+            if (painelLateral.hidden) return;
+            if (painelLateral.contains(evento.target) || botaoMenu.contains(evento.target)) {
+                return;
+            }
             atualizarEstado(false, false);
+        }, false);
 
-            botaoMenu.focus();
-        }
-
-    }, false);
-
-    /* Redimensionamento da tela. */
-    window.addEventListener("resize", function () {
-
-        atualizarEstado(!painelLateral.hidden, false);
-
-    }, false);
-
+        /* Escape recolhe o menu e devolve o foco ao botão. */
+        document.addEventListener("keydown", function (evento) {
+            if (painelLateral.hidden) return;
+            if (evento.key === "Escape" || evento.key === "Esc") {
+                atualizarEstado(false, false);
+                botaoMenu.focus();
+            }
+        }, false);
     }
 
     /* ==========================================================
-   MOBJS-003 | REF: PANEL.FINANCIAL.DUE_DATE.MOBILE
-   FUNÇÃO: FORMATO CURTO DE VENCIMENTO NO MOBILE
-========================================================== */
+       MOBJS-002 | FORMATO CURTO DAS DATAS DE VENCIMENTO
+    ========================================================== */
+    function atualizarFormatoDatasVencimento() {
+        var datas = document.querySelectorAll(".financeiro-conta-data[datetime]");
 
-function atualizarFormatoDatasVencimento() {
+        datas.forEach(function (elemento) {
+            var dataISO = elemento.getAttribute("datetime");
+            var partes = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dataISO || "");
+            if (!partes) return;
 
-    var datas = document.querySelectorAll(
-        ".financeiro-conta-data[datetime]"
-    );
-
-    datas.forEach(function (elemento) {
-
-        /* Preserva o texto original para o desktop. */
-        if (!elemento.hasAttribute("data-texto-desktop")) {
-            elemento.setAttribute(
-                "data-texto-desktop",
-                elemento.textContent
-            );
-        }
-
-        var dataISO = elemento.getAttribute("datetime");
-
-        var partes = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dataISO);
-
-        if (!partes) return;
-
-        if (estaNoMobile()) {
-
-            var dia = partes[3];
-            var mes = partes[2];
-            var ano = partes[1].slice(-2);
-
-            var dataCurta = dia + "/" + mes + "/" + ano;
-
+            var dataCurta = partes[3] + "/" + partes[2] + "/" + partes[1].slice(-2);
             if (elemento.textContent.trim() !== dataCurta) {
                 elemento.textContent = dataCurta;
             }
-
-        } else {
-
-            var textoOriginal = elemento.getAttribute(
-                "data-texto-desktop"
-            );
-
-            if (elemento.textContent !== textoOriginal) {
-                elemento.textContent = textoOriginal;
-            }
-
-        }
-
-    });
-
-}
-
-/* Aplicação inicial. */
-atualizarFormatoDatasVencimento();
-
-/* Atualiza ao mudar o tamanho da tela. */
-window.addEventListener(
-    "resize",
-    atualizarFormatoDatasVencimento,
-    false
-);
-
-/* ==========================================================
-   MOBJS-004 | REF: APP.LAYOUT.MOBILE.PANEL.CAROUSEL.DEPTH_TRANSITION
-   FUNÇÃO: SINCRONIZAR O EFEITO 3D COM O DESLOCAMENTO HORIZONTAL
-========================================================== */
-
-function configurarEfeitoProfundidadeCarrossel() {
-
-    var faixaCarrossel = document.querySelector(".grade-cards");
-
-    if (!faixaCarrossel || !faixaCarrossel.children) return;
-    if (!faixaCarrossel.children.length) return;
-
-    var paineisCarrossel = [];
-    var indicePainel;
-
-    for (indicePainel = 0; indicePainel < faixaCarrossel.children.length; indicePainel++) {
-
-        var painelAtual = faixaCarrossel.children[indicePainel];
-        var identificador = painelAtual.getAttribute("id");
-        var classesPainel = painelAtual.classList;
-
-        if (
-            (classesPainel && classesPainel.contains("card-financeiro")) ||
-            (classesPainel && classesPainel.contains("card-estudo")) ||
-            identificador === "painel-rotina" ||
-            identificador === "painel-compromisso" ||
-            identificador === "painel-lembrete"
-        ) {
-            paineisCarrossel.push(painelAtual);
-        }
-
-    }
-
-    if (!paineisCarrossel.length) return;
-
-    var quadroPendente = false;
-
-    function limparEfeitoCarrossel() {
-
-        var indice;
-
-        for (indice = 0; indice < paineisCarrossel.length; indice++) {
-            paineisCarrossel[indice].style.removeProperty("--ci-carrossel-escala");
-            paineisCarrossel[indice].style.removeProperty("--ci-carrossel-opacidade");
-            paineisCarrossel[indice].style.removeProperty("--ci-carrossel-rotacao");
-        }
-
-    }
-
-    function atualizarEfeitoCarrossel() {
-
-        if (!estaNoMobile()) {
-            limparEfeitoCarrossel();
-            return;
-        }
-
-        var larguraPainel = faixaCarrossel.clientWidth;
-        var estiloFaixa = window.getComputedStyle(faixaCarrossel);
-        var espacamentoPainel = parseFloat(estiloFaixa.columnGap) || 0;
-        var passoPainel = larguraPainel + espacamentoPainel;
-
-        if (!passoPainel) return;
-
-        var posicaoAtual = faixaCarrossel.scrollLeft / passoPainel;
-        var indice;
-
-        posicaoAtual = Math.max(0, Math.min(paineisCarrossel.length - 1, posicaoAtual));
-
-        for (indice = 0; indice < paineisCarrossel.length; indice++) {
-
-            var progresso = posicaoAtual - indice;
-            var distancia;
-            var escala;
-            var opacidade;
-            var rotacao;
-
-            progresso = Math.max(-1, Math.min(1, progresso));
-            distancia = Math.abs(progresso);
-
-            /* No foco: escala 1 e opacidade 1. Fora do foco: recuo discreto. */
-            escala = 1 - (distancia * 0.13);
-            opacidade = 1 - (distancia * 0.52);
-            rotacao = (progresso * -18).toFixed(2) + "deg";
-
-            paineisCarrossel[indice].style.setProperty(
-                "--ci-carrossel-escala",
-                escala.toFixed(3)
-            );
-
-            paineisCarrossel[indice].style.setProperty(
-                "--ci-carrossel-opacidade",
-                opacidade.toFixed(3)
-            );
-
-            paineisCarrossel[indice].style.setProperty(
-                "--ci-carrossel-rotacao",
-                rotacao
-            );
-
-        }
-
-    }
-
-    function solicitarAtualizacaoCarrossel() {
-
-        if (typeof window.requestAnimationFrame !== "function") {
-            atualizarEfeitoCarrossel();
-            return;
-        }
-
-        if (quadroPendente) return;
-
-        quadroPendente = true;
-
-        window.requestAnimationFrame(function () {
-            quadroPendente = false;
-            atualizarEfeitoCarrossel();
         });
-
     }
 
-    if (typeof faixaCarrossel.addEventListener !== "function") return;
-    if (typeof paineisCarrossel[0].style.setProperty !== "function") return;
+    atualizarFormatoDatasVencimento();
 
-    faixaCarrossel.addEventListener(
-        "scroll",
-        solicitarAtualizacaoCarrossel,
-        false
-    );
+    /* ==========================================================
+       MOBJS-003 | EFEITO DE PROFUNDIDADE DO CARROSSEL MOBILE
+    ========================================================== */
+    function configurarEfeitoProfundidadeCarrossel() {
+        var faixaCarrossel = document.querySelector(".grade-cards");
+        if (!faixaCarrossel || !faixaCarrossel.children || !faixaCarrossel.children.length) {
+            return;
+        }
 
-    window.addEventListener(
-        "resize",
-        solicitarAtualizacaoCarrossel,
-        false
-    );
+        var paineisCarrossel = [];
+        for (var indicePainel = 0; indicePainel < faixaCarrossel.children.length; indicePainel++) {
+            var painelAtual = faixaCarrossel.children[indicePainel];
+            var identificador = painelAtual.getAttribute("id");
+            var classesPainel = painelAtual.classList;
 
-    window.addEventListener(
-        "orientationchange",
-        solicitarAtualizacaoCarrossel,
-        false
-    );
+            if (
+                (classesPainel && classesPainel.contains("card-financeiro")) ||
+                (classesPainel && classesPainel.contains("card-estudo")) ||
+                identificador === "painel-rotina" ||
+                identificador === "painel-compromisso" ||
+                identificador === "painel-lembrete"
+            ) {
+                paineisCarrossel.push(painelAtual);
+            }
+        }
 
-    solicitarAtualizacaoCarrossel();
+        if (!paineisCarrossel.length) return;
 
-}
+        var quadroPendente = false;
 
-/* Inicializa o efeito sem interferir no scroll snap ou nos gestos de toque. */
-configurarEfeitoProfundidadeCarrossel();
+        function atualizarEfeitoCarrossel() {
+            var larguraPainel = faixaCarrossel.clientWidth;
+            var estiloFaixa = window.getComputedStyle(faixaCarrossel);
+            var espacamentoPainel = parseFloat(estiloFaixa.columnGap) || 0;
+            var passoPainel = larguraPainel + espacamentoPainel;
+            if (!passoPainel) return;
 
+            var posicaoAtual = faixaCarrossel.scrollLeft / passoPainel;
+            posicaoAtual = Math.max(0, Math.min(paineisCarrossel.length - 1, posicaoAtual));
+
+            for (var indice = 0; indice < paineisCarrossel.length; indice++) {
+                var progresso = Math.max(-1, Math.min(1, posicaoAtual - indice));
+                var distancia = Math.abs(progresso);
+                var escala = 1 - (distancia * 0.13);
+                var opacidade = 1 - (distancia * 0.52);
+                var rotacao = (progresso * -18).toFixed(2) + "deg";
+
+                paineisCarrossel[indice].style.setProperty("--ci-carrossel-escala", escala.toFixed(3));
+                paineisCarrossel[indice].style.setProperty("--ci-carrossel-opacidade", opacidade.toFixed(3));
+                paineisCarrossel[indice].style.setProperty("--ci-carrossel-rotacao", rotacao);
+            }
+        }
+
+        function solicitarAtualizacaoCarrossel() {
+            if (typeof window.requestAnimationFrame !== "function") {
+                atualizarEfeitoCarrossel();
+                return;
+            }
+            if (quadroPendente) return;
+
+            quadroPendente = true;
+            window.requestAnimationFrame(function () {
+                quadroPendente = false;
+                atualizarEfeitoCarrossel();
+            });
+        }
+
+        if (typeof faixaCarrossel.addEventListener !== "function") return;
+        if (!paineisCarrossel[0].style || typeof paineisCarrossel[0].style.setProperty !== "function") return;
+
+        faixaCarrossel.addEventListener("scroll", solicitarAtualizacaoCarrossel, false);
+        window.addEventListener("resize", solicitarAtualizacaoCarrossel, false);
+        window.addEventListener("orientationchange", solicitarAtualizacaoCarrossel, false);
+        solicitarAtualizacaoCarrossel();
+    }
+
+    configurarEfeitoProfundidadeCarrossel();
 })();
-

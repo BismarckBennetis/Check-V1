@@ -125,7 +125,7 @@
 }
 
 /* =========================
-  TEXTO CHECK-IN
+  TEXTO CHECK — MOBILE
 ========================= */
 
 /* ID: CSS-008 | REF: APP.HEADER | SELETOR: .logo-nome */
@@ -368,7 +368,7 @@
 }
 
 /* ==================================================
-  MENU PRINCIPAL DO CHECK-IN
+  MENU PRINCIPAL DO CHECK — MOBILE
   Finalidade: posicionar os cinco botões em uma linha,
   com espaçamento semelhante ao mockup.
 ================================================== */
@@ -553,23 +553,24 @@
 }
 
 /* =========================================
-  LAYOUT PRINCIPAL
-  Organiza o conteúdo e os calendários em uma linha.
+  ESTRUTURA PRINCIPAL MOBILE
+  Organiza calendário, menu lateral e carrossel em uma coluna.
 ========================================= */
 /* ID: CSS-030 | REF: APP.LAYOUT | SELETOR: .conteudo-principal */
 .conteudo-principal {
   display: grid;
-  grid-template-columns: 274px minmax(0, 1fr) 262px;
-  align-items: start;
-  column-gap: 15px;
-  row-gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  column-gap: 0;
+  row-gap: 14px;
   width: 100%;
-  padding: 20px 23px;
+  padding: 12px 10px;
+  position: relative;
 }
 
 /* =========================================
-   PAINEL DOS DOIS CALENDÁRIOS
-   Mantém os meses empilhados verticalmente.
+   PAINEL DO CALENDÁRIO MOBILE
+   Exibe um único calendário acima dos painéis.
 ========================================= */
 
 /* ID: CSS-031 | REF: PANEL.CALENDAR | SELETOR: .painel-calendarios */
@@ -581,15 +582,17 @@
     width: 100%;
     min-width: 0;
 
-    grid-column: 3;
+    grid-column: 1;
     grid-row: 1;
+    justify-self: center;
+    max-width: 320px;
 
     align-items: stretch;
 }
 
 /* =========================================
-  CARTÃO DE CADA CALENDÁRIO
-  Define o fundo, a borda e o espaçamento de cada mês.
+  CARTÃO DO CALENDÁRIO
+  Define o fundo, a borda e o espaçamento do mês exibido.
 ========================================= */
 
 /* Cartão do calendário: reproduz a borda e a sombra do mockup */
@@ -764,15 +767,15 @@
 }
 
 /* =========================================
-  CONTEÚDO PRINCIPAL DO CHECK-IN
+  CONTEÚDO PRINCIPAL DO CHECK — MOBILE
   Mantém o conteúdo central e adaptável.
 ========================================= */
 
 /* Área central reservada para o conteúdo principal. */
 /* ID: CSS-043 | REF: APP.LAYOUT | SELETOR: .area-conteudo */
 .area-conteudo {
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: 1;
+  grid-row: 2;
   width: 100%;
   min-width: 0;
   padding: 4px;
@@ -872,7 +875,7 @@
   background-color: transparent;
   /* Mantém o fundo transparente */
   color: #032602;
-  /* Usa o verde escuro do Check-In */
+  /* Usa o verde escuro do Check */
   font-family: Arial, sans-serif;
   /* Define a fonte da seta */
   font-size: 27px;
@@ -1145,6 +1148,11 @@
   flex-direction: column;
   align-items: stretch;
   gap: 20px;
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: auto;
+  z-index: 100;
   grid-column: 1;
   grid-row: 1;
   width: 100%;
@@ -4020,7 +4028,7 @@ svg g {
   background: #e8ebe9;
 }
 
-/* Círculo neumórfico — relevo suave do Check-In
+/* Círculo neumórfico — relevo suave do Check
 .esfera-neumorfica {
   width: 126px;
   height: 126px;
@@ -6756,21 +6764,12 @@ box-sizing: border-box;
    não ao tema de cores. Breakpoints e valores preservados.
 ========================================================== */
 
-/* Mantém o desktop intermediário: sidebar + conteúdo. */
+/* Ajustes de espaçamento da estrutura mobile. */
 @media (max-width: 652px) {
   .conteudo-principal {
     align-items: stretch;
     gap: 14px;
     padding: 12px;
-  }
-}
-
-@media (max-width: 1350px) {
-  .conteudo-principal {
-    grid-template-columns: minmax(210px, 230px) minmax(0, 1fr);
-    padding: 18px 16px;
-    column-gap: 16px;
-    row-gap: 18px;
   }
 }
 

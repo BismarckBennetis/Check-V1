@@ -3,7 +3,7 @@
 @layer theme{
 
 /* ==========================================================
-   CHECK-IN — TEMA ESCURO PREMIUM
+   CHECK — TEMA ESCURO MOBILE
    Camada visual complementar: mantém a estrutura e o JS atuais.
    Paleta: preto profundo, grafite, verde esmeralda e alertas rubi.
 ========================================================== */
@@ -83,7 +83,7 @@ body {
   letter-spacing: -2px;
   font-family: "Exo 2", sans-serif;
 
-/* ACABAMENTO METÁLICO — CHECK-IN */
+/* ACABAMENTO METÁLICO — CHECK MOBILE */
 
 background: linear-gradient(
     180deg,
@@ -874,17 +874,6 @@ text-align: center;
   height: 15px;
 }
 
-#painel-compromisso .compromisso-dia-status .rotina-status-svg--check {
-  width: 16px;
-  height: 14px;
-}
-
-#painel-compromisso .compromisso-dia-status .rotina-status-svg--alerta {
-  width: 5.45px;
-  height: 15px;
-}
-
-#painel-compromisso .compromisso-dia-status .rotina-status-svg,
 .card-estudo .estudo-dia-circulo .rotina-status-svg,
 #card-rotina-semanal .rotina-dia-status .rotina-status-svg {
   filter:
@@ -1349,7 +1338,7 @@ text-align: center;
 }
 
 /* ==========================================================
-   CHECK-IN — LOGO ESTÁTICA
+   CHECK — LOGO MOBILE
    Uma imagem única; sem máscaras ou camadas animadas.
 ========================================================== */
 
@@ -2487,7 +2476,7 @@ header.cabecalho .logo-simbolo {
 #painel-compromisso .compromisso-conteudo {
   display: grid;
 
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
 
   gap: 10px;
 
@@ -2506,161 +2495,6 @@ header.cabecalho .logo-simbolo {
   min-height: 0;
 }
 
-/* RESUMO SEMANAL */
-#painel-compromisso .compromisso-semana {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-  position: relative;
-
-  flex: 0 0 60px;
-  height: 60px;
-  min-height: 60px;
-  box-sizing: border-box;
-  min-width: 0;
-  padding: 17px 9px 9px;
-
-  border: 1px solid rgba(54, 194, 113, .36);
-  border-radius: 14px;
-
-  background: linear-gradient(
-    145deg,
-    #11251a,
-    #0b1710
-  );
-
-  box-shadow:
-
-    /* SOMBRA EXTERNA INFERIOR E DIREITA */
-    6px 7px 12px rgba(0, 0, 0, .65),
-
-    /* ILUMINAÇÃO EXTERNA SUPERIOR E ESQUERDA */
-    -5px -5px 11px rgba(75, 115, 86, .16),
-
-    /* ILUMINAÇÃO INTERNA SUPERIOR E ESQUERDA */
-    inset 1px 1px 3px rgba(195, 255, 215, .08),
-
-    /* PROFUNDIDADE INTERNA INFERIOR E DIREITA */
-    inset -2px -2px 4px rgba(0, 0, 0, .42);
-}
-
-#painel-compromisso .compromisso-dias {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 3px;
-
-  min-width: 0;
-}
-
-/* DIAS DA SEMANA — PADRÃO VISUAL DO PAINEL ESTUDO */
-
-#painel-compromisso .compromisso-dia {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  min-width: 0;
-}
-
-/* TIPOGRAFIA DOS DIAS */
-#painel-compromisso .compromisso-dia > span:first-child {
-  color: #c8ebd3;
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .25px;
-  line-height: 1;
-  text-shadow: 0 1px 2px rgba(0,0,0,.55);
-}
-
-/* PADRÃO DOS CÍRCULOS — COMPROMISSOS SEMANAIS */
-
-/* FORMATO E ACABAMENTO BASE */
-#painel-compromisso .compromisso-dia-status {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 22px;
-  height: 22px;
-  min-width: 22px;
-  flex: 0 0 22px;
-
-  box-sizing: border-box;
-  padding: 0;
-
-  border: 1px solid rgba(255,255,255,.28);
-  border-radius: 50%;
-
-  color: #ffffff;
-  font-family: "Times New Roman", serif;
-  font-size: 11px;
-  font-weight: 800;
-  line-height: 1;
-  text-shadow: 0 1px 2px rgba(0,0,0,.45);
-
-  box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.20),
-    inset 0 -1px 2px rgba(0,0,0,.28),
-    0 1px 3px rgba(0,0,0,.30);
-}
-
-/* CONCLUÍDO — VERDE */
-#painel-compromisso .compromisso-dia-status.feito {
-  background: linear-gradient(
-    145deg,
-    #62efa0 0%,
-    #1aa75c 52%,
-    #086039 100%
-  );
-
-  border-color: rgba(163,255,193,.66);
-
-  box-shadow:
-    inset 0 1px 2px rgba(255,255,255,.32),
-    inset 0 -2px 3px rgba(0,45,20,.34),
-    -1px -1px 1px rgba(235,255,240,.08),
-    1px 2px 3px rgba(0,0,0,.42),
-    0 1px 2px rgba(24,190,94,.12);
-}
-
-/* PENDENTE — VERMELHO */
-#painel-compromisso .compromisso-dia-status.pendente {
-  background: linear-gradient(
-    145deg,
-    #f16b74 0%,
-    #bf3543 52%,
-    #781d2a 100%
-  );
-
-  border-color: rgba(255,169,175,.58);
-
-  box-shadow:
-    inset 0 1px 2px rgba(255,255,255,.28),
-    inset 0 -2px 3px rgba(55,0,5,.36),
-    -1px -1px 1px rgba(255,232,234,.08),
-    1px 2px 3px rgba(0,0,0,.42),
-    0 1px 2px rgba(190,35,52,.13);
-}
-
-/* FUTURO — CINZA METÁLICO */
-#painel-compromisso .compromisso-dia-status.futuro {
-  background: linear-gradient(
-    145deg,
-    #718176 0%,
-    #46564b 55%,
-    #304036 100%
-  );
-
-  border-color: rgba(205,232,214,.34);
-
-  box-shadow:
-    inset 0 1px 2px rgba(255,255,255,.26),
-    inset 0 -2px 3px rgba(0,0,0,.34),
-    -1px -1px 1px rgba(245,255,248,.08),
-    1px 2px 3px rgba(0,0,0,.42);
-}
 
 /* CARTÃO DE PENDÊNCIAS */
 #painel-compromisso .compromisso-pendencias {
@@ -3218,7 +3052,7 @@ header.cabecalho .logo-simbolo {
 /* Estilo do botão Descartar aposentado; o ícone SVG foi preservado como símbolo. */
 
 /* AJUSTE PARA TELAS ESTREITAS */
-@media (max-width: 650px) {
+@media (max-width: 652px) {
 
   #painel-compromisso {
     height: auto;
@@ -5627,57 +5461,8 @@ left: -15px;
 /* ID: DARK-242 | REF: APP.RESPONSIVE.V20 | REORGANIZAÇÃO RESPONSIVA DA APLICAÇÃO */
 /* ============================================================
    RESPONSIVIDADE V20 — GRID PRINCIPAL E PAINÉIS
-   Mantém a composição desktop e reorganiza o conteúdo sem cortes.
+   Reorganiza os painéis em larguras intermediárias e mobile sem cortes.
    ============================================================ */
-
-/* Faixa intermediária: sidebar + conteúdo; calendários passam para baixo. */
-@media (max-width: 1350px) {
-  .menu-principal {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 10px;
-    padding-inline: 16px;
-  }
-
-  .menu-principal .botao-menu {
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-  }
-
-  .painel-esquerdo {
-    grid-column: 1;
-    grid-row: 1;
-    width: 100%;
-    margin: 0;
-  }
-
-  .area-conteudo {
-    grid-column: 2;
-    grid-row: 1;
-    width: 100%;
-    min-width: 0;
-    padding: 0;
-  }
-
-  .painel-calendarios {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 262px));
-    justify-content: center;
-    align-items: start;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-  }
-
-  .painel-calendarios .calendario {
-    width: 100%;
-    max-width: 320px;
-    min-width: 0;
-  }
-}
 
 /* Tablet e janelas menores: empilhamento de áreas para evitar colunas comprimidas. */
 @media (max-width: 999px) {
@@ -5752,10 +5537,11 @@ left: -15px;
   .painel-calendarios {
     grid-column: 1;
     grid-row: 3;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-content: center;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
     width: 100%;
     max-width: 760px;
     justify-self: center;
@@ -5764,7 +5550,7 @@ left: -15px;
 
   .painel-calendarios .calendario {
     width: 100%;
-    max-width: none;
+    max-width: 320px;
     min-width: 0;
   }
 }
@@ -6737,14 +6523,6 @@ min-height: 30px;
     line-height: 12px;
 }
 
-/* BORDA DO TÍTULO — COMPROMISSOS SEMANAIS */
-
-#painel-compromisso .compromisso-semana
-> h3.estudo-campo-rotulo {
-    border: 1px solid rgba(126, 214, 103, .45);
-    border-radius: 3px;
-}
-
 /* TÍTULOS PENDENTES — NEGRITO MAIS SUAVE */
 
 #painel-compromisso #lista-compromissos-pendentes
@@ -6910,21 +6688,6 @@ letter-spacing: -0.3px;
 #painel-compromisso #lista-compromissos-ontem,
 #painel-compromisso #lista-compromissos-hoje {
     gap: 14px;
-}
-
-/* REMOVER BORDA — CONTAINER COMPROMISSOS SEMANAIS */
-
-/* NEUMORFISMO EXTERNO SUAVE — COMPROMISSOS SEMANAIS */
-
-#painel-compromisso .compromisso-semana {
-    background: transparent;
-    border: 1px solid transparent;
-
-    box-shadow:
-        -2px -2px 5px rgba(220, 255, 232, 0.055),
-        -1px -1px 2px rgba(220, 255, 232, 0.025),
-         2px  2px 5px rgba(0, 0, 0, 0.38),
-         1px  1px 2px rgba(0, 0, 0, 0.22);
 }
 
 /* PADRONIZAÇÃO DA ESPESSURA DAS BORDAS — QUATRO PAINÉIS */

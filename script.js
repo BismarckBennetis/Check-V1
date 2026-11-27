@@ -1,166 +1,125 @@
-/* Compatibilidade ES5 — preserva as funções existentes em motores antigos. */
+/* Compatibilidade com navegadores que ainda não oferecem estes métodos. */
 (function () {
-  if (!Array.from) {
-    Array.from = function (colecao) { return Array.prototype.slice.call(colecao); };
-  }
-  if (typeof NodeList !== "undefined" && !NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = Array.prototype.forEach;
-  }
-  if (!String.prototype.padStart) {
-    String.prototype.padStart = function (tamanho, preenchimento) {
-      var texto = String(this);
-      var caractere = preenchimento || " ";
-      while (texto.length < tamanho) texto = caractere + texto;
-      return texto.slice(-tamanho);
-    };
-  }
-  if (!Number.parseFloat) Number.parseFloat = parseFloat;
+    if (!Array.from) {
+        Array.from = function (colecao) { return Array.prototype.slice.call(colecao); };
+    }
+    if (typeof NodeList !== "undefined" && !NodeList.prototype.forEach) {
+        NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+    if (!String.prototype.padStart) {
+        String.prototype.padStart = function (tamanho, preenchimento) {
+            var texto = String(this);
+            var caractere = preenchimento || " ";
+            while (texto.length < tamanho) texto = caractere + texto;
+            return texto.slice(-tamanho);
+        };
+    }
+    if (!Number.parseFloat) Number.parseFloat = parseFloat;
 })();
 
-/* ID: JS-001 | REF: PANEL.CALENDAR.INITIAL_STATE | ESTADO E DATAS INICIAIS */
-/* ==================================================
-  CALENDÁRIO CHECK-IN
-  Objetivo: mostrar o mês atual e o próximo mês.
-  ================================================== */
-/* Obtém a data de hoje usando o computador */
+/* ==========================================================
+   CHECK — CALENDÁRIO MOBILE
+   O Check utiliza um único calendário: o mês atual, navegável
+   pelas setas anterior e próximo.
+========================================================== */
 var hoje = new Date();
 var temporizadorAtualizacao = null;
-/* Define os nomes dos meses em português */
-var nomesMeses = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-];
-/* Obtém o mês atual e o ano atual */
 var mesAtual = hoje.getMonth();
 var anoAtual = hoje.getFullYear();
+var calendarioAtual = document.getElementById("calendario-atual");
 
-/* ==================================================
-  PREENCHER OS DIAS DOS CALENDÁRIOS
-  Objetivo: mostrar os dias da semana e os números
-  de cada mês nas posições corretas.
-  ================================================== */
-/* Define as abreviações dos dias da semana,
-  começando pelo domingo. */
+var nomesMeses = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+];
 var nomesDias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
-/* ID: JS-002 | REF: PANEL.CALENDAR.DAY_RENDERING | GERAÇÃO DOS DIAS DO CALENDÁRIO */
-/* Preenche um calendário com o mês, o ano e os dias correspondentes. */
-function preencherCalendario(identificador, mes, ano) {
-    /* Localiza o cartão do calendário que será atualizado. */
-    var calendario = document.querySelector(identificador);
-    /* Localiza os espaços do título, do ano e dos dias. */
-    var titulo = calendario.querySelector(".calendario-titulo");
-    var anoElemento = calendario.querySelector(".calendario-ano");
-    var cabecalhoDias = calendario.querySelector(".calendario-dias-semana");
-    var gradeDias = calendario.querySelector(".calendario-dias");
-    /* Atualiza o nome do mês e o ano exibidos no cabeçalho. */
+
+function preencherCalendario(mes, ano) {
+    if (!calendarioAtual) return;
+
+    var titulo = calendarioAtual.querySelector(".calendario-titulo");
+    var anoElemento = calendarioAtual.querySelector(".calendario-ano");
+    var cabecalhoDias = calendarioAtual.querySelector(".calendario-dias-semana");
+    var gradeDias = calendarioAtual.querySelector(".calendario-dias");
+    if (!titulo || !anoElemento || !cabecalhoDias || !gradeDias) return;
+
     titulo.textContent = nomesMeses[mes];
     anoElemento.textContent = ano;
-    /* Guarda o mês e o ano exibidos para permitir a navegação. */
-    calendario.dataset.mes = mes;
-    calendario.dataset.ano = ano;
-    /* Limpa os nomes e números anteriores antes de desenhar novamente. */
+    calendarioAtual.dataset.mes = String(mes);
+    calendarioAtual.dataset.ano = String(ano);
     cabecalhoDias.innerHTML = "";
     gradeDias.innerHTML = "";
-    /* Adiciona os sete nomes dos dias da semana. */
+
     nomesDias.forEach(function (nome) {
         var diaSemana = document.createElement("span");
         diaSemana.textContent = nome;
         cabecalhoDias.appendChild(diaSemana);
     });
-    /* Descobre em qual dia da semana o mês começa. */
+
     var primeiroDia = new Date(ano, mes, 1).getDay();
-    /* Descobre quantos dias existem neste mês. */
     var quantidadeDias = new Date(ano, mes + 1, 0).getDate();
-    /* Verifica se este calendário mostra o mês e o ano atuais. */
     var dataAtual = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
-    /* Cria espaços vazios antes do primeiro dia do mês. */
+
     for (var i = 0; i < primeiroDia; i++) {
-        var espacoVazio = document.createElement("span");
-        gradeDias.appendChild(espacoVazio);
+        gradeDias.appendChild(document.createElement("span"));
     }
-    /* Cria uma célula para cada dia do mês. */
+
     for (var numeroDia = 1; numeroDia <= quantidadeDias; numeroDia++) {
         var celulaDia = document.createElement("span");
+        var dataCelula = new Date(ano, mes, numeroDia);
         celulaDia.classList.add("calendario-dia");
         celulaDia.textContent = numeroDia;
-        /* Compara a data completa com a data atual. */
-        var dataCelula = new Date(ano, mes, numeroDia);
-        /* Destaca os feriados nacionais no calendário. */
+
         if (ehFeriadoNacional(dataCelula)) {
             celulaDia.classList.add("feriado-nacional");
         }
-        /* Marca os dias anteriores. */
         if (dataCelula < dataAtual) {
             celulaDia.classList.add("dia-passado");
         }
-        /* Destaca o dia atual. */
         if (dataCelula.getTime() === dataAtual.getTime()) {
             celulaDia.classList.add("hoje");
         }
-        /* Adiciona o número à grade. */
         gradeDias.appendChild(celulaDia);
     }
 }
-/* Preenche o único calendário da versão mobile. */
-preencherCalendario("#calendario-atual", mesAtual, anoAtual);
 
-/* ID: JS-003 | REF: PANEL.CALENDAR.MONTH_NAVIGATION | NAVEGAÇÃO MENSAL */
+function navegarCalendario(diferenca) {
+    if (!calendarioAtual) return;
 
-/* ==================================================
-  NAVEGAÇÃO DOS CALENDÁRIOS
-  Permite avançar ou voltar um mês pelas setas.
-  ================================================== */
-  
-/* Localiza os dois calendários da página. */
-var calendarios = document.querySelectorAll(".calendario");
-/* Configura as setas de cada calendário separadamente. */
-calendarios.forEach(function (calendario) {
-    /* Localiza o botão que volta um mês. */
-    var setaAnterior = calendario.querySelector(".seta-anterior");
-    /* Localiza o botão que avança um mês. */
-    var setaProxima = calendario.querySelector(".seta-proxima");
-    /* Volta um mês quando a seta esquerda é clicada. */
-    setaAnterior.addEventListener("click", function () {
-        /* Lê o mês e o ano mostrados neste calendário. */
-        var mes = Number(calendario.dataset.mes);
-        var ano = Number(calendario.dataset.ano);
-        /* Calcula o mês anterior, inclusive na mudança de ano. */
-        mes--;
-        if (mes < 0) {
-            mes = 11;
-            ano--;
-        }
-        /* Atualiza este calendário com o mês anterior. */
-        preencherCalendario("#" + calendario.id, mes, ano);
-    });
-    /* Avança um mês quando a seta direita é clicada. */
-    setaProxima.addEventListener("click", function () {
-        /* Lê o mês e o ano mostrados neste calendário. */
-        var mes = Number(calendario.dataset.mes);
-        var ano = Number(calendario.dataset.ano);
-        /* Calcula o próximo mês, inclusive na mudança de ano. */
-        mes++;
-        if (mes > 11) {
-            mes = 0;
-            ano++;
-        }
-        /* Atualiza este calendário com o próximo mês. */
-        preencherCalendario("#" + calendario.id, mes, ano);
-    });
-});
+    var mes = Number(calendarioAtual.dataset.mes);
+    var ano = Number(calendarioAtual.dataset.ano);
+    if (!isFinite(mes) || !isFinite(ano)) return;
 
-/* ID: JS-008 | REF: APP.SIDEBAR.NATIONAL_HOLIDAYS */
+    mes += diferenca;
+    if (mes < 0) {
+        mes = 11;
+        ano--;
+    } else if (mes > 11) {
+        mes = 0;
+        ano++;
+    }
+    preencherCalendario(mes, ano);
+}
 
+if (calendarioAtual) {
+    var setaAnterior = calendarioAtual.querySelector(".seta-anterior");
+    var setaProxima = calendarioAtual.querySelector(".seta-proxima");
+
+    if (setaAnterior) {
+        setaAnterior.addEventListener("click", function () {
+            navegarCalendario(-1);
+        });
+    }
+    if (setaProxima) {
+        setaProxima.addEventListener("click", function () {
+            navegarCalendario(1);
+        });
+    }
+
+    preencherCalendario(mesAtual, anoAtual);
+}
+
+/* ID: JS-008 | FERIADOS NACIONAIS */
 function calcularPascoa(ano) {
     var a = ano % 19;
     var b = Math.floor(ano / 100);
@@ -176,23 +135,18 @@ function calcularPascoa(ano) {
     var m = Math.floor((a + 11 * h + 22 * l) / 451);
     var mes = Math.floor((h + l - 7 * m + 114) / 31);
     var dia = ((h + l - 7 * m + 114) % 31) + 1;
-
     return new Date(ano, mes - 1, dia);
 }
 
 function ehFeriadoNacional(data) {
     var chave = String(data.getMonth() + 1).padStart(2, "0") +
         "-" + String(data.getDate()).padStart(2, "0");
-
     var feriadosFixos = [
-        "01-01", "04-21", "05-01",
-        "09-07", "10-12", "11-02",
-        "11-15", "11-20", "12-25"
+        "01-01", "04-21", "05-01", "09-07", "10-12",
+        "11-02", "11-15", "11-20", "12-25"
     ];
 
-    if (feriadosFixos.indexOf(chave) !== -1) {
-        return true;
-    }
+    if (feriadosFixos.indexOf(chave) !== -1) return true;
 
     var pascoa = calcularPascoa(data.getFullYear());
     var paixaoDeCristo = new Date(
@@ -200,75 +154,69 @@ function ehFeriadoNacional(data) {
         pascoa.getMonth(),
         pascoa.getDate() - 2
     );
-
     return data.getFullYear() === paixaoDeCristo.getFullYear() &&
         data.getMonth() === paixaoDeCristo.getMonth() &&
         data.getDate() === paixaoDeCristo.getDate();
 }
 
-/* ID: JS-004 | REF: APP.CLOCK_AND_CALENDAR.DATE_SYNC | RELÓGIO E ATUALIZAÇÃO DIÁRIA */
+/* Atualiza relógio, data e destaque do dia no calendário mobile. */
 function verificarDataEAgendarAtualizacao() {
     var agora = new Date();
     var horarioValor = document.querySelector(".horario-valor");
     var dataValor = document.querySelector(".data-valor");
-    var diaData = dataValor.querySelector(".data-dia");
-    var mesData = dataValor.querySelector(".data-mes");
-    var anoData = dataValor.querySelector(".data-ano");
-    horarioValor.textContent =
-        String(agora.getHours()).padStart(2, "0") +
-            ":" +
+
+    if (horarioValor) {
+        horarioValor.textContent =
+            String(agora.getHours()).padStart(2, "0") + ":" +
             String(agora.getMinutes()).padStart(2, "0");
-    diaData.textContent = String(agora.getDate()).padStart(2, "0");
-    mesData.textContent = String(agora.getMonth() + 1).padStart(2, "0");
-    anoData.textContent = agora.getFullYear();
-    /* O feriado destaca somente o número do dia no campo de data. */
-    diaData.classList.toggle("feriado-nacional", ehFeriadoNacional(agora));
+    }
+
+    if (dataValor) {
+        var diaData = dataValor.querySelector(".data-dia");
+        var mesData = dataValor.querySelector(".data-mes");
+        var anoData = dataValor.querySelector(".data-ano");
+        if (diaData) {
+            diaData.textContent = String(agora.getDate()).padStart(2, "0");
+            diaData.classList.toggle("feriado-nacional", ehFeriadoNacional(agora));
+        }
+        if (mesData) mesData.textContent = String(agora.getMonth() + 1).padStart(2, "0");
+        if (anoData) anoData.textContent = agora.getFullYear();
+    }
+
     var mudouMes = agora.getFullYear() !== hoje.getFullYear() ||
-    agora.getMonth() !== hoje.getMonth();
+        agora.getMonth() !== hoje.getMonth();
+    var mudouDia = mudouMes || agora.getDate() !== hoje.getDate();
 
-var mudouDia = mudouMes ||
-    agora.getDate() !== hoje.getDate();
-
-if (mudouDia) {
-
-    hoje = agora;
-
-    if (mudouMes) {
-
-        mesAtual = agora.getMonth();
-        anoAtual = agora.getFullYear();
-
-        preencherCalendario(
-            "#calendario-atual",
-            mesAtual,
-            anoAtual
-        );
-
-    } else {
-
-        calendarios.forEach(function (calendario) {
-
+    if (mudouDia) {
+        hoje = agora;
+        if (mudouMes) {
+            mesAtual = agora.getMonth();
+            anoAtual = agora.getFullYear();
+            preencherCalendario(mesAtual, anoAtual);
+        } else if (calendarioAtual) {
             preencherCalendario(
-                "#" + calendario.id,
-                Number(calendario.dataset.mes),
-                Number(calendario.dataset.ano)
+                Number(calendarioAtual.dataset.mes),
+                Number(calendarioAtual.dataset.ano)
             );
-
-        });
-
+        }
     }
-}
+
     clearTimeout(temporizadorAtualizacao);
-    var proximoMinuto = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate(), agora.getHours(), agora.getMinutes() + 1);
-    temporizadorAtualizacao = setTimeout(verificarDataEAgendarAtualizacao, proximoMinuto.getTime() - agora.getTime());
+    var proximoMinuto = new Date(
+        agora.getFullYear(), agora.getMonth(), agora.getDate(),
+        agora.getHours(), agora.getMinutes() + 1
+    );
+    temporizadorAtualizacao = setTimeout(
+        verificarDataEAgendarAtualizacao,
+        proximoMinuto.getTime() - agora.getTime()
+    );
 }
-/* ID: JS-005 | REF: APP.CLOCK.VISIBILITY_REFRESH | RETORNO DA ABA AO PRIMEIRO PLANO */
+
 document.addEventListener("visibilitychange", function () {
-    if (!document.hidden) {
-        verificarDataEAgendarAtualizacao();
-    }
+    if (!document.hidden) verificarDataEAgendarAtualizacao();
 });
 verificarDataEAgendarAtualizacao();
+
 /* Utilitário compartilhado pelos controladores de rolagem. */
 function limitarValor(valor, minimo, maximo) {
     return Math.max(minimo, Math.min(maximo, valor));

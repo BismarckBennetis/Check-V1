@@ -3,9 +3,9 @@
 @layer responsive {
 
     /* ==========================================================
-    CHECK.IN — AJUSTES RESPONSIVOS
+    CHECK — AJUSTES MOBILE
     ARQUIVO: mobile.css
-    ORIGEM: CHECK.IN V21.1
+    ORIGEM: CHECK MOBILE
     REFATORAÇÃO: V21.2 — CAMADA RESPONSIVE
 
         PADRÃO DE IDENTIFICAÇÃO: MOB-###
@@ -17,9 +17,10 @@
         - Organização dos elementos
 
     INTEGRAÇÃO:
-        - index.html e script.js definem a estrutura/estado compartilhados
-        - style.css e tema-dark.css fornecem base e tema
-        - arquivo responsivo; contém regras mobile e exceções globais/desktop documentadas
+        - index.html define a estrutura do Check mobile
+        - script.js contém comportamentos centrais usados pelo mobile
+        - style.css fornece a base; tema-dark.css fornece a identidade visual
+        - este arquivo contém ajustes específicos da interface mobile
         ========================================================== */
 
         /* ==========================================================
@@ -81,7 +82,7 @@
         ID: MOB-004
         REF: APP.HEADER.LOGO
         SELETOR: header.cabecalho .logo-nome
-        FUNÇÃO: DIMENSIONAMENTO DO NOME CHECK.ING
+        FUNÇÃO: DIMENSIONAMENTO DO NOME DO CHECK
             REFERÊNCIA ORIGINAL: DARK-111
             ====================================================== */
 
@@ -575,16 +576,6 @@
         }
 
         /* ==========================================================
-        ID: MOB-039
-        REF: PANEL.CALENDAR.MOBILE
-        FUNÇÃO: EXIBIR SOMENTE O CALENDÁRIO ATUAL NO MOBILE
-            ========================================================== */
-
-        #calendario-proximo {
-            display: none;
-        }
-
-        /* ==========================================================
         ID: MOB-042
         REF: PANEL.CALENDAR.WEEKDAY.FONT
         FUNÇÃO: AUMENTAR A FONTE DOS DIAS DA SEMANA
@@ -668,7 +659,7 @@
     ID: MOB-046
     REF: APP.UI.HIDDEN_STATE
     FUNÇÃO: RESPEITAR O ATRIBUTO HIDDEN SEM OCULTAR A BARRA VERTICAL CUSTOMIZADA
-    ESCOPO: GLOBAL — EXCEÇÃO MANTIDA FORA DO BREAKPOINT MOBILE
+    ESCOPO: REGRA FUNCIONAL GLOBAL DO CHECK MOBILE
         ========================================================== */
 
     [hidden]:not(.ci-scrollbar-vertical) {
@@ -2031,17 +2022,6 @@
             transform: translateX(-10px);
         }
 
-        /* MOB-094 — CENTRALIZAR RESUMO SEMANAL */
-        #painel-compromisso .compromisso-semana {
-            width: 95%;
-            align-self: center;
-            margin-left: auto;
-            margin-right: auto;
-            box-sizing: border-box;
-            left: 8px;
-            top: -24px;
-        }
-
         /* MOB-095 — DESLOCAR SOMENTE O RÓTULO PENDENTES */
         #painel-compromisso .compromisso-pendencias
         > .compromisso-pendencias-rotulo {
@@ -2429,10 +2409,49 @@ ESCOPO: SOMENTE MOBILE
         display: contents;
     }
 
-    /* RESUMO SEMANAL — PRIMEIRO */
-    #painel-compromisso .compromisso-semana {
+    /* CAMPO PRIORIDADE — PAINEL COMPROMISSO */
+
+    #painel-compromisso .compromisso-prioridade-slot {
+        display: flex;
+
         grid-column: 1;
         grid-row: 1;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 60px;
+        min-height: 60px;
+
+        box-sizing: border-box;
+    }
+
+   /* CAMPO PRIORIDADE — LARGURA EXPANDIDA */
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+
+        height: 37px;
+
+        flex: 0 0 100%;
+
+        box-sizing: border-box;
+    }
+
+    /* ÁREA VAZIA — PRESERVA A POSIÇÃO ORIGINAL NO MOBILE */
+    #painel-compromisso .compromisso-conteudo::before {
+        content: "";
+        display: block;
+        grid-column: 1;
+        grid-row: 1;
+        width: 100%;
+        height: 60px;
+        min-height: 60px;
+        visibility: hidden;
+        pointer-events: none;
     }
 
     /* HOJE — SUBIR PARA A SEGUNDA POSIÇÃO */
@@ -2842,6 +2861,12 @@ ESCOPO: SOMENTE MOBILE
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        /* MOB-109 — DESLOCAR SOMENTE O HORÁRIO DO AVISO */
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo:last-child > strong {
+            left: -12px;
         }
 
         /* HOJE/ONTEM — CONTORNO E RÓTULOS VERDES */

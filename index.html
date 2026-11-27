@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-    <!-- FAVICON CHECK-IN — NOVO SÍMBOLO VERDE V6 -->
+    <!-- FAVICON DO CHECK — MOBILE -->
     <link rel="icon" type="image/png" sizes="16x16" href="imagens/fvc/checkin-favicon-pacote/favicon-16x16.png?v=6">
     <link rel="icon" type="image/png" sizes="32x32" href="imagens/fvc/checkin-favicon-pacote/favicon-32x32.png?v=6">
     <link rel="icon" type="image/png" sizes="48x48" href="imagens/fvc/checkin-favicon-pacote/favicon-48x48.png?v=6">
@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="imagens/fvc/checkin-favicon-pacote/apple-touch-icon.png?v=6">
 
 
-    <title>Check.Ing</title>
+    <title>Check</title>
 
     <!-- Fontes Google usadas pelo projeto: Sora, Nunito Sans e Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -259,13 +259,13 @@ M 124 31 L 131 31 L 136 33 L 142 39 L 144 44 L 144 99 L 142 104 L 136 110 L 131 
     <!-- Cabeçalho com o logo -->
     <!-- ID: HTML-005 | REF: APP.HEADER | CABEÇALHO, LOGO E AÇÕES -->
     <header class="cabecalho">
-      <a href="#" class="logo" aria-label="Check-In - Página inicial">
+      <a href="#" class="logo" aria-label="Check — Página inicial">
         <img
           src="imagens/logo-checkin-premium.webp"
-          alt="Símbolo Check-In em verde esmeralda e grafite"
+          alt="Símbolo do Check em verde esmeralda e grafite"
           class="logo-simbolo"
         />
-        <span class="logo-nome">Check.Ing</span>
+        <span class="logo-nome">Check</span>
       </a>
 
       <div class="acoes-cabecalho">
@@ -275,7 +275,7 @@ M 124 31 L 131 31 L 136 33 L 142 39 L 144 44 L 144 99 L 142 104 L 136 110 L 131 
           <!-- ==========================================
           ÍCONE DE NOTIFICAÇÕES
           Finalidade: desenhar um sino totalmente verde,
-          conforme o mockup original do Check-In.
+          conforme o mockup original do Check.
           ========================================== -->
 
           <!-- Desenho vetorial do sino -->
@@ -371,7 +371,7 @@ M 124 31 L 131 31 L 136 33 L 142 39 L 144 44 L 144 99 L 142 104 L 136 110 L 131 
     </header>
 
     <!-- ==========================================
-    MENU PRINCIPAL DO CHECK-IN
+    MENU PRINCIPAL DO CHECK — MOBILE
     Finalidade: agrupar os cinco botões de navegação
     exibidos abaixo do cabeçalho.
     ========================================== -->
@@ -3653,59 +3653,75 @@ M 124 31 L 131 31 L 136 33 L 142 39 L 144 44 L 144 99 L 142 104 L 136 110 L 131 
 
               <section class="compromisso-coluna-lateral">
 
+                <!-- ID: HTML-133 | REF: PANEL.COMMITMENT.PRIORITY -->
+<!-- CAMPO PRIORIDADE CLONADO DO PAINEL ESTUDO -->
 
-                <!-- ID: HTML-102 | REF: PANEL.COMMITMENT.WEEKLY | RESUMO SEMANAL -->
-                <article class="compromisso-semana">
+<div class="compromisso-prioridade-slot">
 
-                  <h3 class="estudo-campo-rotulo">Compromissos Semanais</h3>
+    <div class="estudo-prioridade compromisso-prioridade">
 
-                  <div class="compromisso-dias">
+        <span class="estudo-prioridade-rotulo">
+            Compromisso 
+        </span>
 
-                    <div class="compromisso-dia">
-                      <span>DOM</span>
-                      <span class="compromisso-dia-status feito"><svg class="rotina-status-svg rotina-status-svg--check" viewBox="0 0 20 18" aria-hidden="true" focusable="false"><path d="M1 9.5 L6.2 14.8 Q7.2 15.8 8.3 14.2 C11.1 9.2 14.5 4.5 19 1.5 C15.4 3.2 11.6 6.7 7.1 11.4 L2.8 8.5 Q1.1 7.4 1 9.5 Z"/></svg></span>
-                    </div>
+        <svg
+            class="estudo-prioridade-icone"
+            viewBox="-4 -18 279 281"
+            width="22"
+            height="22"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
 
-                    <div class="compromisso-dia">
-                      <span>SEG</span>
-                      <span class="compromisso-dia-status feito"><svg class="rotina-status-svg rotina-status-svg--check" viewBox="0 0 20 18" aria-hidden="true" focusable="false"><path d="M1 9.5 L6.2 14.8 Q7.2 15.8 8.3 14.2 C11.1 9.2 14.5 4.5 19 1.5 C15.4 3.2 11.6 6.7 7.1 11.4 L2.8 8.5 Q1.1 7.4 1 9.5 Z"/></svg></span>
-                    </div>
+            <g
+                stroke="currentColor"
+                stroke-width="13"
+                stroke-linecap="round"
+                stroke-linejoin="round">
 
-                    <div class="compromisso-dia">
-                      <span>TER</span>
-                      <span class="compromisso-dia-status pendente"><svg class="rotina-status-svg rotina-status-svg--alerta" viewBox="0 0 8 22" aria-hidden="true" focusable="false"><rect x="2.53" y="1" width="2.94" height="13.5" rx="1.47"/><circle cx="4" cy="19.28" r="1.78"/></svg></span>
-                    </div>
+                <rect
+                    x="140"
+                    y="36"
+                    width="121"
+                    height="36"
+                    rx="12"
+                    transform="rotate(45 200.5 54)"
+                />
 
-                    <div class="compromisso-dia">
-                      <span>QUA</span>
-                      <span class="compromisso-dia-status pendente"><svg class="rotina-status-svg rotina-status-svg--alerta" viewBox="0 0 8 22" aria-hidden="true" focusable="false"><rect x="2.53" y="1" width="2.94" height="13.5" rx="1.47"/><circle cx="4" cy="19.28" r="1.78"/></svg></span>
-                    </div>
+                <path d="M101 94 L147 48"/>
+                <path d="M177 70 L205 104"/>
 
-                    <div class="compromisso-dia">
-                      <span>QUI</span>
-                      <span class="compromisso-dia-status feito"><svg class="rotina-status-svg rotina-status-svg--check" viewBox="0 0 20 18" aria-hidden="true" focusable="false"><path d="M1 9.5 L6.2 14.8 Q7.2 15.8 8.3 14.2 C11.1 9.2 14.5 4.5 19 1.5 C15.4 3.2 11.6 6.7 7.1 11.4 L2.8 8.5 Q1.1 7.4 1 9.5 Z"/></svg></span>
-                    </div>
+                <path d="
+                    M101 94
+                    C80 89 53 91 34 101
+                    C18 110 16 122 29 135
+                    L59 163
+                    L4 251
+                    L95 198
+                    L124 229
+                    C136 241 149 233 156 217
+                    C163 201 165 178 164 157
+                    L205 105
+                "/>
 
-                    <div class="compromisso-dia">
-                      <span>SEX</span>
-                      <span class="compromisso-dia-status feito"><svg class="rotina-status-svg rotina-status-svg--check" viewBox="0 0 20 18" aria-hidden="true" focusable="false"><path d="M1 9.5 L6.2 14.8 Q7.2 15.8 8.3 14.2 C11.1 9.2 14.5 4.5 19 1.5 C15.4 3.2 11.6 6.7 7.1 11.4 L2.8 8.5 Q1.1 7.4 1 9.5 Z"/></svg></span>
-                    </div>
+                <path d="M59 163 L95 198"/>
+                <path d="M61 121 C70 114 84 114 94 121"/>
 
-                    <div class="compromisso-dia">
-                      <span>SÁB</span>
-                      <span class="compromisso-dia-status futuro"><svg class="rotina-status-svg rotina-status-svg--check" viewBox="0 0 20 18" aria-hidden="true" focusable="false"><path d="M1 9.5 L6.2 14.8 Q7.2 15.8 8.3 14.2 C11.1 9.2 14.5 4.5 19 1.5 C15.4 3.2 11.6 6.7 7.1 11.4 L2.8 8.5 Q1.1 7.4 1 9.5 Z"/></svg></span>
-                    </div>
+            </g>
+        </svg>
 
-                  </div>
+        <strong class="estudo-prioridade-texto">
+            Algebra Linear
+        </strong>
 
-                </article>
+    </div>
 
+</div>
 
                 <!-- ID: HTML-103 | REF: PANEL.COMMITMENT.PENDING | PENDÊNCIAS -->
                 <section class="compromisso-pendencias">
 
-                  <h3 class="estudo-campo-rotulo compromisso-pendencias-rotulo">
-  Pendentes
+                  <h3 class="estudo-campo-rotulo compromisso-pendencias-rotulo"> Pendentes
                   </h3>
 
 
@@ -6879,45 +6895,6 @@ M 124 31 L 131 31 L 136 33 L 142 39 L 144 44 L 144 99 L 142 104 L 136 110 L 131 
 
           <!-- Cabeçalho com os dias da semana e os números do mês -->
           <div class="calendario-dias-semana"></div>
-          <div class="calendario-dias"></div>
-        </section>
-
-        <!-- Calendário do próximo mês -->
-        <!-- ID: HTML-129 | REF: PANEL.CALENDAR.NEXT | CALENDÁRIO DO MÊS SEGUINTE -->
-        <section class="calendario" id="calendario-proximo">
-          <!-- Cabeçalho com o nome do mês e o ano -->
-
-          <!-- Cabeçalho com seta anterior, ano, mês e seta seguinte -->
-          <div class="calendario-cabecalho">
-            <!-- Botão para voltar um mês -->
-            <button
-              class="seta-calendario seta-anterior"
-              type="button"
-              aria-label="Mês anterior"
-            >
-              ‹
-            </button>
-
-            <!-- Ano dentro da cápsula verde -->
-            <span class="calendario-ano"></span>
-
-            <!-- Nome do mês -->
-            <h2 class="calendario-titulo"></h2>
-
-            <!-- Botão para avançar um mês -->
-            <button
-              class="seta-calendario seta-proxima"
-              type="button"
-              aria-label="Próximo mês"
-            >
-              ›
-            </button>
-          </div>
-
-          <!-- Cabeçalho com os dias da semana -->
-          <div class="calendario-dias-semana"></div>
-
-          <!-- Grade com os números dos dias -->
           <div class="calendario-dias"></div>
         </section>
       </aside>
