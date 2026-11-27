@@ -2876,150 +2876,189 @@ ESCOPO: SOMENTE MOBILE
         }
     }
 
-    /* ==========================================================
-       MOB-107 | REF: PANEL.COMMITMENT.PENDING.FIELDS.MOBILE
-       FUNÇÃO: REUNIR LOCAL, DATA E HORÁRIO NA MESMA GRADE
-       ESCOPO: SOMENTE MOBILE — PENDENTES
-    ========================================================== */
+   
+/* ==========================================================
+   MOB-107 | REF: PANEL.COMMITMENT.PENDING.FIELDS.MOBILE
+   FUNÇÃO: REUNIR LOCAL, DATA E HORÁRIO NA MESMA GRADE
+   ESCOPO: SOMENTE MOBILE — PENDENTES
+========================================================== */
 
-    @media (max-width: 652px) {
+@media (max-width: 652px) {
 
-        /* MANTÉM O VIEWPORT DA LISTA COM A ALTURA ORIGINAL */
-        #painel-compromisso .compromisso-pendencias-viewport {
-            flex: 0 0 205px;
-            height: 205px;
-            min-height: 205px;
-            max-height: 205px;
-        }
-
-        #painel-compromisso
-        .compromisso-pendencias-viewport
-        > #lista-compromissos-pendentes {
-            height: 100%;
-            min-height: 0;
-            max-height: 100%;
-        }
-
-        /* REDUZ O ESPAÇAMENTO INTERNO PARA COMPENSAR A SEGUNDA LINHA */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item {
-            gap: 2px;
-            padding: 5px 8px 6px;
-        }
-
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-cabecalho {
-            min-height: 16px;
-            margin-bottom: 6px;
-        }
-
-        /* GRADE — LOCAL E DATA LADO A LADO; HORÁRIO ABAIXO */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados {
-            display: grid;
-            grid-template-columns: repeat(10, minmax(0, 1fr));
-            grid-template-areas:
-                "local local local local local local data data data data"
-                "horario horario horario aviso aviso aviso aviso aviso aviso aviso";
-            column-gap: 6px;
-            row-gap: 4px;
-            align-items: stretch;
-            min-width: 0;
-        }
-
-        /* MOB-107 — DESLOCAR RÓTULOS LOCAL E DATA PARA CIMA */
-
-        /* LOCAL — 7px PARA A ESQUERDA */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados
-        > .compromisso-evento-dado:nth-child(1) > span {
-            top: -8px;
-            left: calc(50% - 50px);
-        }
-
-        /* HORÁRIO — SUBIR SOMENTE O TÍTULO */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados
-        > .compromisso-evento-dado:nth-child(3) > span {
-            top: -9px;
-        }
-
-        /* DATA — MANTER POSIÇÃO ATUAL */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados
-        > .compromisso-evento-dado:nth-child(2) > span {
-            top: -8px;
-            left: calc(50% - 22px);
-        }
-
-        /* BASE DOS TRÊS CAMPOS — SEM DESLOCAMENTOS HERDADOS */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados
-        > .compromisso-evento-dado {
-            position: relative;
-            width: auto;
-            min-width: 0;
-            max-width: 100%;
-            margin: 0;
-            padding: 5px 3px 2px;
-            transform: none;
-            box-sizing: border-box;
-        }
-
-        /* LOCAL — PRIMEIRA COLUNA */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados
-        > .compromisso-evento-dado:nth-child(1) {
-            grid-area: local;
-            justify-self: stretch;
-
-            height: 28px;
-            min-height: 28px;
-
-            box-sizing: border-box;
-            transform: translateY(-10px);
-        }
-
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados
-        > .compromisso-evento-dado:nth-child(2) {
-            grid-area: data;
-            justify-self: stretch;
-
-            height: 28px;
-            min-height: 28px;
-
-            box-sizing: border-box;
-            transform: translateY(-10px);
-        }
-
-        /* HORÁRIO — LINHA INFERIOR INTEIRA */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados
-        > .compromisso-evento-dado:nth-child(3) {
-            grid-area: horario;
-            justify-self: stretch;
-        }
-
-        /* AVISO — DIREITA DO HORÁRIO */
-        #painel-compromisso #lista-compromissos-pendentes
-        > .compromisso-pendencia-item
-        > .compromisso-evento-dados
-        > .compromisso-evento-aviso {
-            grid-area: aviso;
-            justify-self: stretch;
-        }
-
+    /* MANTÉM O VIEWPORT DA LISTA COM A ALTURA ORIGINAL */
+    #painel-compromisso .compromisso-pendencias-viewport {
+        flex: 0 0 205px;
+        height: 205px;
+        min-height: 205px;
+        max-height: 205px;
     }
+
+    #painel-compromisso
+    .compromisso-pendencias-viewport
+    > #lista-compromissos-pendentes {
+        height: 100%;
+        min-height: 0;
+        max-height: 100%;
+    }
+
+    /* REDUZ O ESPAÇAMENTO INTERNO */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item {
+        gap: 2px;
+        padding: 5px 8px 6px;
+    }
+
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-cabecalho {
+        min-height: 16px;
+        margin-bottom: 6px;
+    }
+
+    /* GRADE — LOCAL E DATA LADO A LADO; HORÁRIO ABAIXO */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        grid-template-areas:
+            "local local local local local local data data data data"
+            "horario horario horario aviso aviso aviso aviso aviso aviso aviso";
+        column-gap: 6px;
+        row-gap: 4px;
+        align-items: stretch;
+        min-width: 0;
+    }
+
+    /* TODOS OS TEXTOS — FONT-SIZE 12PX */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado span,
+
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado strong {
+        font-size: 12px;
+    }
+
+    /* LOCAL — TÍTULO */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:nth-child(1) > span {
+        top: -8px;
+        left: calc(50% - 50px);
+    }
+
+    /* HORÁRIO — SUBIR SOMENTE O TÍTULO */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:nth-child(3) > span {
+        top: -9px;
+    }
+
+    /* HORÁRIO — DESCER SOMENTE O VALOR */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item:first-child
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:nth-child(3) > strong {
+        position: relative;
+        top: 2px;
+    }
+
+    /* DATA — TÍTULO */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:nth-child(2) > span {
+        top: -8px;
+        left: calc(50% - 22px);
+    }
+
+    /* DATA — DESCER SOMENTE O VALOR */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item:first-child
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:nth-child(2) > strong {
+        position: relative;
+        top: 3px;
+    }
+
+    /* BASE DOS TRÊS CAMPOS */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado {
+        position: relative;
+        width: auto;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0;
+        padding: 5px 3px 2px;
+        transform: none;
+        box-sizing: border-box;
+    }
+
+    /* LOCAL — PRIMEIRA COLUNA */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:nth-child(1) {
+        grid-area: local;
+        justify-self: stretch;
+        height: 28px;
+        min-height: 28px;
+        box-sizing: border-box;
+        transform: translateY(-10px);
+    }
+
+    /* REUNIÃO — POSIÇÃO DO TEXTO */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item:first-child
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:first-child > strong {
+        position: relative;
+        left: -50px;
+        top: 4px;
+        transform: none;
+    }
+
+    /* DATA — SEGUNDA COLUNA */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:nth-child(2) {
+        grid-area: data;
+        justify-self: stretch;
+        height: 28px;
+        min-height: 28px;
+        box-sizing: border-box;
+        transform: translateY(-10px);
+    }
+
+    /* HORÁRIO — LINHA INFERIOR */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-dado:nth-child(3) {
+        grid-area: horario;
+        justify-self: stretch;
+    }
+
+    /* AVISO — DIREITA DO HORÁRIO */
+    #painel-compromisso #lista-compromissos-pendentes
+    > .compromisso-pendencia-item
+    > .compromisso-evento-dados
+    > .compromisso-evento-aviso {
+        grid-area: aviso;
+        justify-self: stretch;
+    }
+
+}
+
 
     /* MOB-108 | REF: PANEL.COMMITMENT.REMINDER_FIELD
        CAMPO DE AVISO COM DOIS RÓTULOS FLUTUANTES — SEM ÍCONES */
