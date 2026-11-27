@@ -2426,44 +2426,35 @@ ESCOPO: SOMENTE MOBILE
 /* ==========================================================
 ID: MOB-104
 REF: PANEL.COMMITMENT.MOBILE.ORDER
-FUNÇÃO: INVERTER A POSIÇÃO DE HOJE E PENDENTES
+FUNÇÃO: ORGANIZAÇÃO DO CAMPO PRIORIDADE E POSIÇÃO DOS PAINÉIS
 ESCOPO: SOMENTE MOBILE
 ========================================================== */
 
 @media (max-width: 652px) {
 
-    /* Liberar os elementos internos para a grade mobile */
+    /* LIBERAR ELEMENTOS INTERNOS PARA A GRADE MOBILE */
+
     #painel-compromisso .compromisso-coluna-lateral {
         display: contents;
     }
 
-    /* CHECK — COMPROMISSO — CAMPO PRIORIDADE */
+
+    /* CONTÊINER DO CAMPO PRIORIDADE */
 
     #painel-compromisso .compromisso-prioridade-slot {
-    display: flex;
+        display: flex;
 
-    grid-column: 1;
-    grid-row: 1;
+        grid-column: 1;
+        grid-row: 1;
 
-    align-items: center;
-    justify-content: center;
+        align-items: center;
+        justify-content: center;
 
-    width: 100%;
-    height: 60px;
-    min-height: 60px;
+        width: 100%;
+        height: 60px;
+        min-height: 60px;
 
-    box-sizing: border-box;
-    }
-
-    /* CORREÇÃO DO CENTRO ÓPTICO — COMPENSA O PADDING DIREITO */
-
-@media (max-width: 650px) {
-
-    #painel-compromisso .compromisso-prioridade-slot {
-        position: relative;
-        left: 7.5px;
-    }
-
+        box-sizing: border-box;
     }
 
     /* CAMPO PRIORIDADE */
@@ -2471,71 +2462,244 @@ ESCOPO: SOMENTE MOBILE
     #painel-compromisso .compromisso-prioridade-slot
     > .compromisso-prioridade {
 
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 4px;
+
         width: 96%;
         max-width: 96%;
         min-width: 0;
 
-        height: 70px;
+        height: 40px;
 
         flex: 0 1 96%;
 
         margin: 0 auto;
-        transform: translateY(-18px);
 
+        transform: translateY(-30px);
 
         box-sizing: border-box;
     }
 
-    /* CHECK — COMPROMISSO — CAMPO PRIORIDADE */
 
-    /* RÓTULO EM UMA LINHA */
-
-    #painel-compromisso .compromisso-prioridade-slot
-    .estudo-prioridade-rotulo {
-        white-space: nowrap;
-    }
-
-    /* CHECK — COMPROMISSO — RÓTULO EM UMA LINHA */
+    /* RÓTULO */
 
     #painel-compromisso .compromisso-prioridade-slot
     .estudo-prioridade-rotulo {
         white-space: nowrap;
     }
 
-    /* CHECK — COMPROMISSO — SUBIR ÍCONE DA PRIORIDADE */
+
+    /* REORGANIZAR OS ELEMENTOS EM UMA ÚNICA LINHA */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > :where(.estudo-prioridade-icone),
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > :where(.estudo-prioridade-texto),
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > :where(.compromisso-prioridade-calendario-icone),
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > :where(.compromisso-prioridade-data),
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > :where(.compromisso-prioridade-relogio-icone),
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > :where(.compromisso-prioridade-horario) {
+
+        position: relative;
+
+        top: 2px;
+        right: auto;
+        bottom: auto;
+        left: auto;
+
+        transform: none;
+
+        flex: 0 0 auto;
+
+        align-self: center;
+    }
+
+
+    /* ORDEM 1 — ALFINETE */
 
     #painel-compromisso .compromisso-prioridade-slot
     .estudo-prioridade-icone {
-        transform: translate(3px, -1.5px);
+        order: 1;
+
+        position: relative;
+        top: 0;
+        margin: 0;
+        translate: -40px 0;
+
+        width: 18px;
+        height: 18px;
     }
 
-    /* ÁREA VAZIA — PRESERVA A POSIÇÃO ORIGINAL NO MOBILE */
+    /* ORDEM 2 — TEXTO CONSULTA */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .estudo-prioridade-texto {
+        order: 2;
+
+        position: relative;
+        top: 0;
+        margin: 0;
+        translate: -40px 0;
+
+        max-width: none;
+        overflow: visible;
+
+        white-space: nowrap;
+        text-overflow: clip;
+    }
+
+
+    /* ORDEM 3 — CALENDÁRIO */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .compromisso-prioridade-calendario-icone {
+        order: 3;
+
+        margin: 0;
+        translate: 30px 0;
+
+        width: 18px;
+        height: 18px;
+
+        color: #39d879;
+    }
+
+
+    /* ORDEM 4 — DATA */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .compromisso-prioridade-data {
+        order: 4;
+
+        margin: 0;
+        translate: 30px 0;
+
+        display: inline-flex;
+        align-items: center;
+
+        height: 19px;
+
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+
+        white-space: nowrap;
+    }
+
+
+    /* ORDEM 5 — RELÓGIO */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .compromisso-prioridade-relogio-icone {
+        order: 5;
+
+        margin: 0;
+        translate: 40px 0;
+
+        width: 22px;
+        height: 22px;
+
+        color: #39d879;
+    }
+
+
+    /* ORDEM 6 — HORÁRIO */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .compromisso-prioridade-horario {
+        order: 6;
+
+        margin: 0;
+        translate: 40px 0;
+
+        display: inline-flex;
+        align-items: center;
+
+        height: 19px;
+
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+
+        white-space: nowrap;
+    }
+
+
+    /* ÁREA VAZIA — PRESERVAR POSIÇÃO ORIGINAL */
+
     #painel-compromisso .compromisso-conteudo::before {
         content: "";
         display: block;
+
         grid-column: 1;
         grid-row: 1;
+
         width: 100%;
         height: 60px;
         min-height: 60px;
+
         visibility: hidden;
         pointer-events: none;
     }
 
-    /* HOJE — SUBIR PARA A SEGUNDA POSIÇÃO */
+
+    /* HOJE — SEGUNDA POSIÇÃO */
+
     #painel-compromisso #agenda-compromissos-hoje {
         grid-column: 1;
         grid-row: 2;
     }
 
-    /* PENDENTES — DESCER PARA A TERCEIRA POSIÇÃO */
+
+    /* PENDENTES — TERCEIRA POSIÇÃO */
+
     #painel-compromisso .compromisso-pendencias {
         grid-column: 1;
         grid-row: 3;
     }
+
 }
 
-/* CHECK — COMPROMISSO — TRÊS CATEGORIAS HORIZONTAIS */
+
+/* ==========================================================
+CHECK — COMPENSAÇÃO DA LARGURA DO CAMPO
+========================================================== */
+
+@media (max-width: 650px) {
+
+    #painel-compromisso .compromisso-prioridade-slot {
+        position: relative;
+        left: 7.5px;
+        width: calc(100% + 15px);
+    }
+
+}
+
+
+/* ==========================================================
+CHECK — COMPROMISSO — TRÊS CATEGORIAS HORIZONTAIS
+========================================================== */
 
 @media (max-width: 652px) {
 
@@ -2569,8 +2733,6 @@ ESCOPO: SOMENTE MOBILE
 
         box-sizing: border-box;
     }
-
-}
 
 /* ==========================================================
 ID: MOB-105

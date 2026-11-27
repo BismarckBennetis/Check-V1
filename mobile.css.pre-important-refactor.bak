@@ -1,0 +1,3228 @@
+@charset "UTF-8";
+
+@layer responsive {
+
+    /* ==========================================================
+    CHECK — AJUSTES MOBILE
+    ARQUIVO: mobile.css
+    ORIGEM: CHECK MOBILE
+    REFATORAÇÃO: V21.2 — CAMADA RESPONSIVE
+
+        PADRÃO DE IDENTIFICAÇÃO: MOB-###
+
+    RESPONSABILIDADES:
+        - Adaptação estrutural Mobile
+        - Ajustes visuais Mobile
+        - Dimensionamento dos componentes
+        - Organização dos elementos
+
+    INTEGRAÇÃO:
+        - index.html define a estrutura do Check mobile
+        - script.js contém comportamentos centrais usados pelo mobile
+        - style.css fornece a base; tema-dark.css fornece a identidade visual
+        - este arquivo contém ajustes específicos da interface mobile
+        ========================================================== */
+
+        /* ==========================================================
+        GRUPO RESPONSIVO — DISPOSITIVOS MÓVEIS
+    BREAKPOINT: 652px
+        ========================================================== */
+
+        /* ==========================================================
+        GRUPO MOB-001 A MOB-014 — ESTRUTURA PRINCIPAL MOBILE
+    BREAKPOINT: 652px
+        ========================================================== */
+    @media (max-width: 652px) {
+        /* ======================================================
+        ID: MOB-001
+        REF: APP.HEADER
+        SELETOR: header.cabecalho
+        FUNÇÃO: ESTRUTURA EXTERNA DO CABEÇALHO
+            ====================================================== */
+
+        header.cabecalho {
+            height: 70px;
+            min-height: 70px;
+            margin-bottom: 12px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        /* ======================================================
+        ID: MOB-002
+        REF: APP.HEADER.LOGO
+        SELETOR: header.cabecalho .logo
+        FUNÇÃO: POSICIONAMENTO DO GRUPO DA MARCA
+            ====================================================== */
+
+        header.cabecalho .logo {
+            gap: 1px;
+            padding: 0;
+            min-width: 0;
+        }
+
+        /* ======================================================
+        ID: MOB-003
+        REF: APP.HEADER.LOGO
+        SELETOR: header.cabecalho .logo-simbolo
+        FUNÇÃO: DIMENSIONAMENTO DO SÍMBOLO
+            REFERÊNCIA ORIGINAL: DARK-129
+            ====================================================== */
+
+        header.cabecalho .logo-simbolo {
+            width: 58px;
+            height: 58px;
+            max-width: 58px;
+            max-height: 58px;
+            flex: 0 0 58px;
+            transform: translateY(4px);
+        }
+
+        /* ======================================================
+        ID: MOB-004
+        REF: APP.HEADER.LOGO
+        SELETOR: header.cabecalho .logo-nome
+        FUNÇÃO: DIMENSIONAMENTO DO NOME DO CHECK
+            REFERÊNCIA ORIGINAL: DARK-111
+            ====================================================== */
+
+        header.cabecalho .logo-nome {
+            font-size: clamp(19px, 5.5vw, 21px);
+            line-height: 1;
+            letter-spacing: -.4px;
+            white-space: nowrap;
+            transform: translate(-4px, 4px);
+        }
+
+        /* ======================================================
+        ID: MOB-005
+        REF: APP.HEADER.ACTIONS
+        SELETOR: header.cabecalho .acoes-cabecalho
+        FUNÇÃO: POSICIONAMENTO DO SINO E PERFIL
+            ====================================================== */
+
+        header.cabecalho .acoes-cabecalho {
+            gap: 12px;
+            padding: 4px;
+            transform: translateX(-8px);
+        }
+
+        /* ======================================================
+        ID: MOB-006
+        REF: APP.HEADER.NOTIFICATIONS
+        SELETOR: .notificacoes e .icone-sino
+        FUNÇÃO: CENTRALIZAÇÃO E DIMENSIONAMENTO DO SINO
+            ====================================================== */
+
+        header.cabecalho .notificacoes {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+        }
+
+        header.cabecalho .notificacoes .icone-sino {
+            display: block;
+
+            width: 25px;
+            height: 28px;
+            flex: 0 0 25px;
+
+            margin: 0;
+        }
+
+        /* ======================================================
+        ID: MOB-007
+        REF: APP.HEADER.NOTIFICATIONS
+        SELETOR: .contador-notificacao
+        FUNÇÃO: CONTADOR ANCORADO NO CANTO SUPERIOR DIREITO
+            REFERÊNCIA ORIGINAL: DARK-142
+            ====================================================== */
+
+        header.cabecalho .notificacoes .contador-notificacao {
+            position: absolute;
+
+            top: -1px;
+            right: 1px;
+            left: auto;
+
+            width: 12px;
+            height: 12px;
+
+            font-size: 8px;
+            line-height: 1;
+
+            z-index: 2;
+        }
+
+        /* ======================================================
+        ID: MOB-008
+        REF: APP.HEADER.PROFILE
+        SELETOR: .perfil-usuario
+        FUNÇÃO: DIMENSIONAMENTO DO BOTÃO DE PERFIL
+            ====================================================== */
+
+        header.cabecalho .perfil-usuario {
+            width: 32px;
+            height: 32px;
+            transform: translateY(4px);
+        }
+
+        /* ======================================================
+        ID: MOB-009
+        REF: APP.HEADER.PROFILE
+        SELETOR: .perfil-cabeca e .perfil-corpo
+        FUNÇÃO: DIMENSIONAMENTO DA FIGURA INTERNA
+            ====================================================== */
+
+        header.cabecalho .perfil-cabeca {
+            top: 5px;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            transform: translateX(-50%);
+        }
+
+        header.cabecalho .perfil-corpo {
+            bottom: 3px;
+            left: 50%;
+            width: 16px;
+            height: 11px;
+            transform: translateX(-50%);
+        }
+
+        /* ======================================================
+        ID: MOB-010
+        REF: APP.NAVIGATION.PRIMARY
+        SELETOR: body .menu-principal
+        FUNÇÃO: ESTRUTURA GRID DO MENU MOBILE
+
+        DISTRIBUIÇÃO:
+            LINHA 1: FINANCEIRO | ESTUDO | ROTINA
+            LINHA 2: COMPROMISSO | LEMBRETE
+            ====================================================== */
+
+        body .menu-principal {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-auto-flow: row;
+
+            gap: 8px;
+
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+
+            padding: 10px;
+
+            box-sizing: border-box;
+
+        }
+
+        /* ======================================================
+        ID: MOB-011
+        REF: APP.NAVIGATION.PRIMARY
+        SELETOR: body .menu-principal > .botao-menu
+        FUNÇÃO: DISTRIBUIÇÃO DOS CINCO BOTÕES
+            ====================================================== */
+
+        body .menu-principal > .botao-menu {
+            min-width: 0;
+            width: 100%;
+            max-width: none;
+            min-height: 44px;
+
+            padding: 5px 39px 5px 3px;
+            gap: 4px;
+
+            box-sizing: border-box;
+
+            align-items: center;
+            justify-content: center;
+            justify-self: stretch;
+        }
+
+        /* PRIMEIRA LINHA — TRÊS BOTÕES */
+
+        body .menu-principal > .botao-menu:nth-child(-n+3) {
+            grid-column: span 2;
+        }
+
+        /* ======================================================
+        ID: MOB-012
+        REF: APP.NAVIGATION.PRIMARY
+        SELETOR: .menu-principal > .botao-menu .botao-icone
+        FUNÇÃO: DIMENSIONAMENTO DOS ÍCONES DO MENU
+            ====================================================== */
+
+        body .menu-principal > .botao-menu .botao-icone {
+            box-sizing: border-box;
+
+            padding: 0;
+
+            width: 22px;
+            height: 22px;
+
+            flex: 0 0 22px;
+        }
+
+        /* ======================================================
+        ID: MOB-013
+        REF: APP.NAVIGATION.PRIMARY
+        SELETOR: .menu-principal > .botao-menu .botao-texto
+        FUNÇÃO: DIMENSIONAMENTO DOS TEXTOS DO MENU
+            ====================================================== */
+
+        body .menu-principal > .botao-menu .botao-texto {
+            min-width: 0;
+
+            font-size: clamp(11px, 3.3vw, 13px);
+
+            white-space: nowrap;
+            overflow-wrap: normal;
+
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        /* ==========================================================
+        ID: MOB-014
+        REF: APP.NAVIGATION.PRIMARY.TOGGLE_ARROW
+        FUNÇÃO: POSICIONAR E DIMENSIONAR A SETA DO MENU
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        body .menu-principal > .botao-menu[data-menu-lateral-toggle] .seta-menu-direcao {
+            position: relative;
+            right: auto;
+            top: auto;
+
+            transform: translateX(38px);
+            transform-origin: center;
+            transform-box: fill-box;
+            transition: transform 180ms ease;
+
+            display: block;
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
+
+            color: #8af0ae;
+        }
+    }
+
+    /* ==========================================================
+    GRUPO MOB-016 A MOB-045 — NAVEGAÇÃO, MENU, CALENDÁRIO E CABEÇALHOS
+    BREAKPOINT PRINCIPAL: 652px
+    ========================================================== */
+    @media (max-width: 652px) {
+
+        /* ==========================================================
+        ID: MOB-016
+        REF: APP.NAVIGATION.PRIMARY.TOGGLE_SIZE
+        FUNÇÃO: REDUZIR A ALTURA DO BOTÃO MENU LATERAL
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        body .menu-principal > .botao-menu[data-menu-lateral-toggle] {
+            width: 90%;
+            height: 33px;
+            min-height: 33px;
+            max-width: 90%;
+            align-self: center;
+            border-radius: 8px;
+            justify-self: start;
+
+            background: linear-gradient(
+                to right,
+                #187037 0%,
+                #04461b 100%
+                );
+        }
+
+        /* MOBILE — AUMENTAR FONTE DO BOTÃO MENU */
+        body .menu-principal > .botao-menu[data-menu-lateral-toggle]
+        .botao-texto {
+        font-size: 18px;
+        }
+
+        /* ==========================================================
+        ID: MOB-017
+        REF: APP.NAVIGATION.REMINDER_BUTTON.ALIGNMENT
+        FUNÇÃO: DESLOCAR ÍCONE E TEXTO DO BOTÃO LEMBRETE
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+            body .menu-principal > .botao-menu:nth-child(6) > .botao-icone,
+        body .menu-principal > .botao-menu:nth-child(6) > .botao-texto {
+            position: relative;
+            left: 6px;
+        }
+
+        /* ==========================================================
+        ID: MOB-018
+        REF: APP.NAVIGATION.PRIMARY.BUTTONS_SIZE
+        FUNÇÃO: REDUZIR A ALTURA DOS DEMAIS BOTÕES
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        body .menu-principal > .botao-menu:not([data-menu-lateral-toggle]) {
+            min-height: 36px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border-radius: 14px;
+        }
+
+        /* ==========================================================
+        ID: MOB-019
+        REF: APP.SIDEBAR.WIDTH
+        FUNÇÃO: REDUZIR A LARGURA DO PAINEL LATERAL
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        .painel-esquerdo {
+            width: 70%;
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: auto;
+            box-sizing: border-box;
+            padding-bottom: 12px;
+        }
+
+        /* ==========================================================
+        ID: MOB-020
+        REF: APP.SIDEBAR.SEARCH.WIDTH
+        FUNÇÃO: AJUSTAR A LARGURA E A POSIÇÃO DA PESQUISA
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        .painel-esquerdo .menu-lateral-pesquisa {
+            width: calc(100% + 10px);
+            margin-left: -5px;
+            margin-top: -5px;
+        }
+
+        /* ==========================================================
+        ID: MOB-021
+        REF: APP.NAVIGATION.PRIMARY.POSITION
+        FUNÇÃO: DESLOCAR VERTICALMENTE O BLOCO DE BOTÕES
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        body .menu-principal {
+            translate: 0 -5px;
+        }
+
+        /* ==========================================================
+        ID: MOB-022
+        REF: APP.NAVIGATION.PRIMARY.SECOND_ROW
+        FUNÇÃO: POSICIONAR E DESLOCAR A SEGUNDA LINHA DE BOTÕES
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        body .menu-principal > .botao-menu:nth-child(n+4) {
+            grid-column: span 2;
+            translate: 0 -3px;
+        }
+
+        /* ==========================================================
+        ID: MOB-024
+        ID: MOB-025
+        REF: APP.SIDEBAR.BUTTONS.SPACING
+        FUNÇÃO: AJUSTAR O ESPAÇAMENTO E A POSIÇÃO DO BLOCO DE BOTÕES
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .painel-esquerdo .menu-lateral-botoes {
+            row-gap: 9px;
+            margin-top: -7px;
+        }
+
+        /* ==========================================================
+        ID: MOB-026
+        REF: APP.SIDEBAR.CLOCK.SPACING
+        FUNÇÃO: AJUSTAR O ESPAÇAMENTO DO RELÓGIO E DA DATA
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        .painel-esquerdo > .area-inferior-painel {
+            margin-top: 7px;
+        }
+
+        /* ==========================================================
+        ID: MOB-030
+        REF: APP.SIDEBAR.NOTIFICATION.TITLE
+        FUNÇÃO: REDUZIR O TÍTULO NOTIFIQUE-ME
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        .painel-esquerdo .notificacao-titulo {
+            font-size: 9px;
+            padding: 1px 9px;
+        }
+
+        /* ==========================================================
+        ID: MOB-031
+        REF: APP.SIDEBAR.NOTIFICATION.BUTTON
+        FUNÇÃO: REDUZIR O BOTÃO CIRCULAR DE NOTIFICAÇÃO
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        .painel-esquerdo .botao-notifique {
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
+        }
+
+        /* ==========================================================
+        ID: MOB-032
+        REF: APP.SIDEBAR.NOTIFICATION.ICON
+        FUNÇÃO: REDUZIR PROPORCIONALMENTE O ÍCONE INTERNO
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+        .painel-esquerdo .botao-notifique .notificacao-icone {
+            width: 54px;
+            height: 54px;
+            flex: 0 0 54px;
+        }
+
+        /* ==========================================================
+        ID: MOB-035
+        REF: APP.NAVIGATION.PRIMARY.TOGGLE_STATE
+        FUNÇÃO: ROTACIONAR A SETA QUANDO O MENU ESTÁ RECOLHIDO
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        body .menu-principal > .botao-menu[data-menu-lateral-toggle][aria-expanded="false"] .seta-menu-direcao {
+            transform: translateX(38px) rotate(-90deg);
+        }
+
+        /* ==========================================================
+        ID: MOB-036
+        REF: APP.SIDEBAR.WATERFALL
+        FUNÇÃO: ABERTURA DESCENDENTE DO PAINEL LATERAL
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .painel-esquerdo.painel-abrindo {
+            transform-origin: top center;
+            animation: mob036-cascata 500ms cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+
+        @keyframes mob036-cascata {
+            from {
+                transform: translateY(-8px) scaleY(0.06);
+                opacity: 0.8;
+            }
+            to {
+                transform: translateY(0) scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .painel-esquerdo.painel-abrindo {
+                animation: none;
+            }
+        }
+
+        /* ==========================================================
+        ID: MOB-037
+        REF: APP.LAYOUT.MOBILE.ORDER
+        FUNÇÃO: SOBREPOSIÇÃO DO PAINEL LATERAL NO MOBILE
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            /* MOB-037-A — Referência de posicionamento do painel */
+        .conteudo-principal {
+            position: relative;
+        }
+
+        /* 1º — Calendários */
+        .conteudo-principal > .painel-calendarios {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        /* 2º — Painel lateral sobre os demais elementos */
+        .conteudo-principal > .painel-esquerdo {
+            position: absolute;
+            grid-column: 1;
+            grid-row: 1;
+
+            top: -15px;
+            left: 0;
+            right: auto;
+
+            z-index: 100;
+        }
+
+        /* 3º — Conteúdo permanece no fluxo normal */
+        .conteudo-principal > .area-conteudo {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        /* ==========================================================
+        ID: MOB-038
+        REF: PANEL.CALENDAR.SPACING
+        FUNÇÃO: ESPAÇAMENTO UNIFORME ENTRE OS DIAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .painel-calendarios .calendario-dias {
+            column-gap: 6px;
+            row-gap: 6px;
+            grid-template-rows: repeat(6, auto);
+        }
+
+        .painel-calendarios .calendario-dias .calendario-dia {
+            min-height: 0;
+        }
+
+        /* ==========================================================
+        ID: MOB-042
+        REF: PANEL.CALENDAR.WEEKDAY.FONT
+        FUNÇÃO: AUMENTAR A FONTE DOS DIAS DA SEMANA
+            ========================================================== */
+
+            .painel-calendarios .calendario-dias-semana,
+        .painel-calendarios .calendario-dias-semana > * {
+            font-size: 13px;
+        }
+
+        /* ==========================================================
+        ID: MOB-043
+        REF: PANEL.FINANCIAL.HEADER.MOBILE
+        FUNÇÃO: ALINHAR TÍTULO E BOTÕES NA MESMA LINHA
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .card-financeiro .financeiro-cabecalho {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto;
+            grid-template-areas:
+                "identificacao mes detalhes"
+                "progresso progresso progresso";
+
+            align-items: center;
+            column-gap: 6px;
+            row-gap: 8px;
+        }
+
+        .card-financeiro .financeiro-identificacao {
+            grid-area: identificacao;
+            min-width: 0;
+        }
+
+        .card-financeiro .financeiro-mes-card {
+            grid-area: mes;
+            justify-self: center;
+            width: 95px;
+        }
+
+        .card-financeiro .financeiro-cabecalho > .botao-detalhes {
+            grid-area: detalhes;
+            justify-self: end;
+            margin-left: 0;
+            font-size: 10px;
+            padding: 4px 19px 4px 8px;
+        }
+
+        .card-financeiro .financeiro-progresso {
+            grid-area: progresso;
+            width: 100%;
+        }
+
+        /* ==========================================================
+        ID: MOB-044
+        REF: PANEL.FINANCIAL.PRIORITY.ORDER
+        FUNÇÃO: CONTA PRIORITÁRIA ANTES DE RENDA MENSAL
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .card-financeiro .financeiro-indicador-prioritaria {
+            order: -1;
+        }
+
+        /* ==========================================================
+        ID: MOB-045
+        REF: PANEL.FINANCIAL.HEADER.HIERARCHY
+        FUNÇÃO: REDUZIR DESTAQUE DOS CONTROLES DO CABEÇALHO
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            /* Seletor do mês */
+        .card-financeiro .financeiro-cabecalho > .financeiro-mes-card {
+            font-size: 12px;
+            height: 18px;
+        }
+
+    }
+
+    /* ==========================================================
+    ID: MOB-046
+    REF: APP.UI.HIDDEN_STATE
+    FUNÇÃO: RESPEITAR O ATRIBUTO HIDDEN SEM OCULTAR A BARRA VERTICAL CUSTOMIZADA
+    ESCOPO: REGRA FUNCIONAL GLOBAL DO CHECK MOBILE
+        ========================================================== */
+
+    [hidden]:not(.ci-scrollbar-vertical) {
+        display: none;
+    }
+
+    /* ==========================================================
+    GRUPO RESPONSIVO — PAINÉIS E AJUSTES ESPECÍFICOS MOBILE
+    BREAKPOINT PRINCIPAL: 652px
+    ========================================================== */
+    @media (max-width: 652px) {
+        /* ==========================================================
+        ID: MOB-048
+        REF: PANEL.FINANCIAL.INDICATORS.TRANSFORM
+        FUNÇÃO: NEUTRALIZAR DESLOCAMENTOS HERDADOS EM DOIS ELEMENTOS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            .card-financeiro .financeiro-indicador-prioritaria,
+        .card-financeiro .botao-comprovantes {
+            transform: none;
+        }
+
+        /* CHECK — COMPROMISSO — AJUSTE VERTICAL DAS SETAS */
+
+        #painel-compromisso .compromisso-agenda-cabecalho
+        > .compromisso-agenda-seta {
+            top: calc(50% - 3px);
+        }
+
+        /* CHECK — COMPROMISSO — APROXIMAÇÃO PROPORCIONAL DAS SETAS */
+
+        #painel-compromisso .compromisso-agenda-cabecalho
+        > .compromisso-agenda-seta:first-child {
+            left: 12px;
+        }
+
+        #painel-compromisso .compromisso-agenda-cabecalho
+        > .compromisso-agenda-seta:last-child {
+            right: 12px;
+        }
+
+        /* ==========================================================
+        ID: MOB-049
+        REF: PANEL.COMMITMENT.YESTERDAY
+        FUNÇÃO: OCULTAR ONTEM SOMENTE NO MOBILE
+            ========================================================== */
+
+        #painel-compromisso #agenda-compromissos-ontem {
+            display: none;
+        }
+
+        /* ==========================================================
+        ID: MOB-050
+        REF: PANEL.COMMITMENT.PENDING.VIEWPORT
+        FUNÇÃO: CRIAR ÁREA INDEPENDENTE DE RECORTE PARA PENDENTES
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        #painel-compromisso .compromisso-pendencias-viewport {
+            position: static;
+            flex: 0 0 205px;
+            width: calc(100% + 30px);
+            height: 205px;
+            min-height: 205px;
+            max-height: 205px;
+            margin: -10px -10px 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        #painel-compromisso
+        .compromisso-pendencias-viewport
+        > #lista-compromissos-pendentes {
+            width: calc(100% - 2px);
+            max-width: calc(100% - 2px);
+            height: 100%;
+            min-height: 0;
+            max-height: 100%;
+            margin: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* ==========================================================
+        ID: MOB-051
+        REF: PANEL.COMMITMENT.TODAY.VIEWPORT
+        FUNÇÃO: RECORTE COM PROTEÇÃO DAS BORDAS DOS CARDS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            /* VIEWPORT EXTERNO — GEOMETRIA PRESERVADA */
+        #painel-compromisso .compromisso-agenda-viewport {
+            position: static;
+
+            display: flex;
+            flex-direction: column;
+
+            width: calc(100% + 12px);
+            translate: 10px 0;
+            margin-left: -4px;
+            margin-right: -4px;
+            align-self: flex-end;
+
+            flex: 0 0 200px;
+            height: 200px;
+            min-height: 200px;
+            max-height: 200px;
+
+            min-width: 0;
+            box-sizing: border-box;
+
+            overflow: hidden;
+        }
+
+        /* CHECK — COMPROMISSO — DESLOCAR CABEÇALHO PARA BAIXO */
+        #painel-compromisso #agenda-compromissos-hoje.compromisso-agenda
+        > .compromisso-agenda-cabecalho {
+            top: -33px;
+            left: calc(50% + 15px);
+            right: auto;
+            width: 85%;
+            transform: translateX(-50%);
+        }
+
+        /* CHECK — COMPROMISSO — DESLOCAR ÍCONE DO CALENDÁRIO À ESQUERDA */
+
+        #painel-compromisso #agenda-compromissos-hoje.compromisso-agenda
+        > .compromisso-agenda-cabecalho
+        > .compromisso-calendario-icone {
+            transform: translateX(-15px);
+        }
+
+        /* LISTA INTERNA — PROTEÇÃO DAS BORDAS */
+        #painel-compromisso .compromisso-agenda-viewport
+        > #lista-compromissos-hoje {
+
+            flex: 1 1 0;
+
+            width: 100%;
+            min-height: 0;
+            max-height: 100%;
+
+            /* Neutraliza as margens negativas herdadas */
+            margin: 0;
+
+            /* Espaço de segurança para bordas e sombras */
+            padding: 8px 11px 12px 8px;
+
+            box-sizing: border-box;
+
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* ========================================================
+        ID: MOB-052
+        REF: PANEL.COMMITMENT.PENDING.POSITION
+        FUNÇÃO: DESLOCAR TODO O CONTAINER PARA BAIXO
+        ESCOPO: SOMENTE MOBILE
+        ========================================================== */
+
+        #painel-compromisso .compromisso-pendencias {
+            top: -13px;
+        }
+
+        /* ==========================================================
+        ID: MOB-053
+        REF: PANEL.COMMITMENT.PENDING.ITEM.WIDTH
+        FUNÇÃO: REDUZIR E ALINHAR SOMENTE OS CARDS DE PENDENTES
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            #painel-compromisso
+            .compromisso-pendencias-viewport
+            > #lista-compromissos-pendentes
+        > .compromisso-pendencia-item {
+            width: calc(100% - 12px);
+            max-width: calc(100% - 12px);
+            transform: translateX(10px);
+            align-self: flex-start;
+        }
+
+        /* ==========================================================
+        ID: MOB-054
+        REF: APP.LAYOUT.MOBILE.PANEL.HORIZONTAL_CAROUSEL
+        FUNÇÃO: EXIBIR OS CINCO PAINÉIS LADO A LADO COM DESLIZE HORIZONTAL
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .grade-cards {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            column-gap: 12px;
+            row-gap: 0;
+
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            padding: 10px 0 36px;
+            box-sizing: border-box;
+
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+
+            scroll-snap-type: x mandatory;
+            scroll-padding-inline: 0;
+            scrollbar-width: none;
+            overscroll-behavior-x: contain;
+        }
+
+        .grade-cards::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        /* ==========================================================
+        ID: MOB-055
+        REF: APP.LAYOUT.MOBILE.PANEL.HEIGHT.STANDARDIZATION
+        FUNÇÃO: MANTER 725px DE ALTURA E USAR 100% DA LARGURA POR PAINEL
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .area-conteudo > .grade-cards > .card-financeiro,
+        .area-conteudo > .grade-cards > .card-estudo,
+        .area-conteudo > .grade-cards > #painel-rotina,
+        .area-conteudo > .grade-cards > #painel-compromisso,
+        .area-conteudo > .grade-cards > #painel-lembrete {
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 0;
+
+            height: 725px;
+            min-height: 725px;
+            max-height: 725px;
+
+            box-sizing: border-box;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        /* ==========================================================
+        ID: MOB-056
+        REF: APP.LAYOUT.MOBILE.PANEL.CAROUSEL.DEPTH_TRANSITION
+        FUNÇÃO: APLICAR PROFUNDIDADE 3D SUAVE DURANTE O DESLIZE
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .area-conteudo > .grade-cards > .card-financeiro,
+        .area-conteudo > .grade-cards > .card-estudo,
+        .area-conteudo > .grade-cards > #painel-rotina,
+        .area-conteudo > .grade-cards > #painel-compromisso,
+        .area-conteudo > .grade-cards > #painel-lembrete {
+            --ci-carrossel-escala: 1;
+            --ci-carrossel-opacidade: 1;
+            --ci-carrossel-rotacao: 0deg;
+
+            transform: perspective(600px)
+                rotateY(var(--ci-carrossel-rotacao))
+                scale(var(--ci-carrossel-escala));
+            transform-origin: center center;
+            opacity: var(--ci-carrossel-opacidade);
+            backface-visibility: hidden;
+        }
+
+        /* Respeita a preferência do sistema por movimento reduzido. */
+        @media (prefers-reduced-motion: reduce) {
+            .area-conteudo > .grade-cards > .card-financeiro,
+            .area-conteudo > .grade-cards > .card-estudo,
+            .area-conteudo > .grade-cards > #painel-rotina,
+            .area-conteudo > .grade-cards > #painel-compromisso,
+            .area-conteudo > .grade-cards > #painel-lembrete {
+                transform: none;
+                opacity: 1;
+                backface-visibility: visible;
+            }
+        }
+
+        /* ==========================================================
+        ID: MOB-057
+        REF: PANEL.FINANCIAL.TODAY_AGENDA.ALIGNMENT
+        FUNÇÃO: CORRIGIR CENTRALIZAÇÃO HORIZONTAL
+            ========================================================== */
+
+        #container-agenda-financeiro-hoje {
+            transform: none;
+        }
+
+        /* ==========================================================
+        ID: MOB-058
+        REF: PANEL.STUDY.HEADER.MOBILE
+        FUNÇÃO: ALINHAR MÊS E VER DETALHES NA MESMA LINHA
+            PADRÃO DE REFERÊNCIA: MOB-043 — FINANCEIRO
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .card-estudo .estudo-cabecalho {
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) auto auto;
+
+            grid-template-areas:
+                "identificacao mes detalhes"
+                "progresso progresso progresso";
+
+            align-items: center;
+            column-gap: 6px;
+            row-gap: 8px;
+        }
+
+        .card-estudo .estudo-identificacao {
+            grid-area: identificacao;
+            min-width: 0;
+        }
+
+        .card-estudo .estudo-mes-card {
+            grid-area: mes;
+            justify-self: center;
+            width: 95px;
+        }
+
+        .card-estudo .estudo-cabecalho > .botao-detalhes {
+            grid-area: detalhes;
+            justify-self: end;
+            margin-left: 0;
+        }
+
+        .card-estudo .estudo-progresso {
+            grid-area: progresso;
+            width: 100%;
+        }
+
+        /* ==========================================================
+        ID: MOB-059
+        REF: PANEL.STUDY.ACTIVITIES.VIEWPORT
+        FUNÇÃO: CRIAR SUBCONTAINER DE RECORTE DAS ATIVIDADES
+        ESCOPO: SOMENTE MOBILE
+        BARRA: PERMANECE IRMÃ DA LISTA, FORA DO RECORTE
+            ========================================================== */
+
+            .card-estudo .estudo-area-direita
+        > .estudo-atividades-viewport {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 0;
+            width: 100%;
+            min-width: 0;
+            min-height: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .card-estudo .estudo-atividades-viewport
+        > #lista-estudo-atividades {
+            flex: 1 1 0;
+            width: 100%;
+            max-height: 100%;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        /* ==========================================================
+        ID: MOB-060
+        REF: PANEL.ROUTINE.PENDING.TITLE
+        FUNÇÃO: APLICAR VERMELHO AO TÍTULO PENDENTE NO MOBILE
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            #card-rotina-pendente
+            > .rotina-card-cabecalho
+        > h3.estudo-campo-rotulo {
+            background: #241316;
+            border: 1px solid rgba(224, 87, 96, .58);
+            color: #ff9ba2;
+            -webkit-text-fill-color: #ff9ba2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+        }
+
+        /* ==========================================================
+        ID: MOB-062
+        REF: PANEL.FINANCIAL.OVERDUE_AMOUNT.ICON
+        FUNÇÃO: DESLOCAR O ÍCONE VALOR ATRASADO 4PX À DIREITA
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            .card-financeiro
+            .financeiro-indicador-valor-atrasado
+        .financeiro-valor-atrasado-icone {
+            left: 8px;
+        }
+
+        /* ==========================================================
+        ID: MOB-063
+        REF: PANEL.FINANCIAL.TODAY_AGENDA.HEADER_ICON
+        FUNÇÃO: OCULTAR ÍCONE MONETÁRIO DO CABEÇALHO CONTAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            #container-agenda-financeiro-hoje
+        .compromisso-calendario-icone {
+            display: none;
+        }
+
+        /* ==========================================================
+        ID: MOB-064
+        REF: PANEL.FINANCIAL.TODAY_AGENDA.POSITION
+        FUNÇÃO: PRESERVAR A POSIÇÃO AJUSTADA DA AGENDA CONTAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .card-financeiro > .financeiro-agenda-hoje-wrap {
+            margin: -10px 0 3px;
+            align-self: center;
+        }
+
+        /* ==========================================================
+        ID: MOB-065
+        REF: PANEL.REMINDER.HEADER
+        FUNÇÃO: ORGANIZAR TÍTULO, MÊS, DETALHES E CATEGORIAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        #painel-lembrete .lembrete-cabecalho {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto;
+            grid-template-rows: 34px 30px;
+            align-items: center;
+            column-gap: 8px;
+            row-gap: 8px;
+
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 0;
+            flex: 0 0 auto;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* TÍTULO — ESQUERDA */
+        #painel-lembrete .lembrete-identificacao {
+            grid-column: 1;
+            grid-row: 1;
+            justify-self: start;
+            min-width: 0;
+            max-width: 100%;
+            transform: none;
+        }
+
+        /* LIBERA OS ELEMENTOS DO GRUPO PARA O GRID DO CABEÇALHO */
+        #painel-lembrete .lembrete-categorias-wrapper {
+            display: contents;
+        }
+
+        /* MÊS — AO LADO DO TÍTULO */
+        #painel-lembrete .lembrete-mes-card {
+            grid-column: 2;
+            grid-row: 1;
+            justify-self: end;
+            width: 95px;
+            max-width: 95px;
+            margin: 0;
+            transform: none;
+        }
+
+        /* VER DETALHES — CANTO DIREITO */
+        #painel-lembrete .lembrete-cabecalho > .botao-detalhes {
+            position: static;
+            grid-column: 3;
+            grid-row: 1;
+            justify-self: end;
+            align-self: center;
+            margin: 0;
+            z-index: 5;
+        }
+
+        /* HOJE, SEMANAL E MENSAL — ABAIXO DO CABEÇALHO */
+        #painel-lembrete .lembrete-categorias {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-rows: 30px;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin: 0;
+            transform: none;
+            box-sizing: border-box;
+        }
+
+        #painel-lembrete .lembrete-categorias > .lembrete-categoria {
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 380px) {
+            #painel-lembrete .lembrete-cabecalho {
+                grid-template-columns: minmax(0, 1fr) auto;
+                grid-template-rows: 34px 26px 30px;
+            }
+
+            #painel-lembrete .lembrete-identificacao {
+                grid-column: 1 / -1;
+                grid-row: 1;
+            }
+
+            #painel-lembrete .lembrete-mes-card {
+                grid-column: 1;
+                grid-row: 2;
+                justify-self: start;
+            }
+
+            #painel-lembrete .lembrete-cabecalho > .botao-detalhes {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            #painel-lembrete .lembrete-categorias {
+                grid-column: 1 / -1;
+                grid-row: 3;
+            }
+        }
+
+        /* ==========================================================
+        ID: MOB-066
+        REF: PANEL.REMINDER.HEADER.CATEGORIES.COMPACT
+        FUNÇÃO: COMPACTAR OS TRÊS BOTÕES EM TELAS MUITO ESTREITAS
+        ESCOPO: MOBILE ATÉ 310px
+            ========================================================== */
+
+        @media (max-width: 310px) {
+            #painel-lembrete .lembrete-categorias {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-rows: 30px;
+                gap: 4px;
+            }
+
+            #painel-lembrete .lembrete-categorias > .lembrete-categoria {
+                grid-template-columns: 17px minmax(0, 1fr);
+                gap: 2px;
+                padding: 3px;
+            }
+
+            #painel-lembrete .lembrete-categoria-icone {
+                width: 17px;
+                height: 18px;
+            }
+
+            #painel-lembrete .lembrete-categoria-icone svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            #painel-lembrete .lembrete-categoria strong {
+                min-width: 0;
+                font-size: 10px;
+                letter-spacing: -.25px;
+                text-align: left;
+            }
+        }
+
+        /* ==========================================================
+        ID: MOB-067
+        REF: PANEL.REMINDER.WEEKLY.MOBILE.POSITION
+        FUNÇÃO: MANTER O RESUMO SEMANAL ABAIXO DOS CONTROLES DO CABEÇALHO
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        #painel-lembrete #lembrete-semana-vertical {
+            display: none;
+        }
+
+        /* ==========================================================
+        ID: MOB-070
+        REF: PANEL.FINANCIAL.INDICATORS.GRID
+        FUNÇÃO: ORGANIZAR OS QUATRO INDICADORES EM DUAS COLUNAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .card-financeiro .financeiro-indicadores {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            justify-content: center;
+            column-gap: 8px;
+            row-gap: 14px;
+            align-items: stretch;
+        }
+
+        /* CONTA PRIORITÁRIA — LINHA SUPERIOR */
+        .card-financeiro .financeiro-indicador-prioritaria {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            width: 90%;
+            max-width: 90%;
+            justify-self: center;
+            box-sizing: border-box;
+        }
+
+        /* RENDA MENSAL — ESQUERDA */
+        .card-financeiro .financeiro-renda {
+            grid-column: 1;
+            grid-row: 2;
+            width: 100%;
+            max-width: 100%;
+            align-self: stretch;
+            transform: none;
+            height: 44px;
+            min-height: 44px;
+        }
+
+        /* PAGO ESSE MÊS — DIREITA */
+        .card-financeiro .financeiro-indicador-pago {
+            grid-column: 2;
+            grid-row: 2;
+            width: 100%;
+            max-width: 100%;
+            align-self: stretch;
+            transform: none;
+        }
+
+        /* CONTAS ATRASADAS — ESQUERDA */
+        .card-financeiro .financeiro-indicador-atrasadas {
+            grid-column: 1;
+            grid-row: 3;
+            width: 100%;
+            max-width: 100%;
+            height: 44px;
+            min-height: 44px;
+            align-self: stretch;
+            transform: none;
+        }
+
+        /* VALOR ATRASADO — DIREITA */
+        .card-financeiro .financeiro-indicador-valor-atrasado {
+            grid-column: 2;
+            grid-row: 3;
+            width: 100%;
+            max-width: 100%;
+            height: 44px;
+            min-height: 44px;
+            align-self: stretch;
+            transform: none;
+        }
+
+        /* COMPROVANTES — LARGURA REDUZIDA E CENTRALIZADA */
+        .card-financeiro .botao-comprovantes {
+            grid-column: 1 / -1;
+            width: 60%;
+            max-width: 60%;
+            justify-self: center;
+            box-sizing: border-box;
+        }
+
+        /* ==========================================================
+        ID: MOB-071
+        REF: PANEL.FINANCIAL.RECEIPTS.FONT
+        FUNÇÃO: AUMENTAR FONTE DO BOTÃO COMPROVANTES
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            .card-financeiro .botao-comprovantes
+        > span:not(.comprovantes-reflexo) {
+            font-size: 21px;
+        }
+
+        /* ==========================================================
+        ID: MOB-072
+        REF: PANEL.FINANCIAL.BILLS_DUE.VIEWPORT
+        FUNÇÃO: SUBCONTAINER DE RECORTE E LISTAS MAIS LARGAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            /* SUBCONTAINER — RECORTE ANTES DA BARRA VERTICAL */
+
+        .card-financeiro .financeiro-vencidas-viewport {
+            position: relative;
+            display: block;
+
+            width: calc(100% - 4px);
+            max-width: calc(100% - 4px);
+            min-width: 0;
+
+            /* AUMENTAR SOMENTE O LIMITE INFERIOR DO RECORTE */
+
+            height: 100px;
+            min-height: 100px;
+            max-height: 100px;
+
+            border-radius: 7px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* LISTA INTERNA — ROLAGEM NOS DOIS EIXOS */
+        .card-financeiro
+        .financeiro-vencidas-viewport
+        > #lista-financeiro-vencidas {
+
+            display: flex;
+            flex-direction: column;
+
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+
+            box-sizing: border-box;
+
+            overflow-x: auto;
+            overflow-y: auto;
+
+            -webkit-overflow-scrolling: touch;
+
+            scrollbar-width: none;
+        }
+
+        /* OCULTAR SOMENTE AS BARRAS NATIVAS */
+        .card-financeiro
+        #lista-financeiro-vencidas::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        /* CARTÕES INTERNOS — LARGURA AMPLIADA */
+        .card-financeiro
+        #lista-financeiro-vencidas
+        > .financeiro-conta {
+
+            width: 460px;
+            min-width: 460px;
+            max-width: none;
+
+            flex: 0 0 auto;
+
+            box-sizing: border-box;
+        }
+
+        /* BARRA HORIZONTAL PERSONALIZADA */
+        #barra-horizontal-financeiro-vencidas {
+
+            display: block;
+
+            width: 90%;
+            max-width: 90%;
+            height: 10px;
+
+            margin: 4px auto 3px;
+
+            transform: none;
+
+            cursor: pointer;
+            user-select: none;
+            touch-action: none;
+
+            box-sizing: border-box;
+        }
+
+        /* TRILHO VERMELHO */
+        #barra-horizontal-financeiro-vencidas
+        .rotina-barra-trilho {
+
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+            box-sizing: border-box;
+
+            border: 1px solid rgba(225, 80, 94, .48);
+            border-radius: 999px;
+
+            background: linear-gradient(
+                90deg,
+                #241519,
+                #160d11
+                );
+
+            box-shadow:
+                inset 2px 2px 4px rgba(0, 0, 0, .65),
+                inset -1px -1px 3px rgba(210, 60, 75, .16);
+        }
+
+        /* CURSOR DA BARRA — DIMENSÃO CONTROLADA PELO JS-006 */
+        #barra-horizontal-financeiro-vencidas
+        .rotina-barra-cursor {
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 30%;
+            height: 100%;
+
+            box-sizing: border-box;
+
+            border-radius: 999px;
+
+            background: linear-gradient(
+                90deg,
+                #ff9ba2,
+                #ed3545,
+                #a90d1b
+                );
+
+            box-shadow: 0 0 6px rgba(229, 9, 20, .38);
+
+            cursor: grab;
+        }
+
+        /* PRESERVAR POSIÇÃO VISUAL DA BARRA VERTICAL */
+
+        #barra-vertical-financeiro-vencidas {
+            transform: translate(10px, 11px);
+            display: none;
+        }
+
+        /* ==========================================================
+        ID: MOB-073
+        REF: PANEL.FINANCIAL.TODAY_AGENDA.HEADER.HEIGHT
+        FUNÇÃO: AUMENTAR ALTURA VISUAL DO CAMPO CONTAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            .card-financeiro
+            > .financeiro-agenda-hoje-wrap
+            #agenda-financeiro-hoje
+        > .compromisso-agenda-cabecalho::before {
+
+            top: -3px;
+            bottom: -3px;
+        }
+
+        /* ==========================================================
+        ID: MOB-074
+        REF: PANEL.FINANCIAL.TODAY_AGENDA.HEADER.FONT
+        FUNÇÃO: AUMENTAR FONTE DO TÍTULO CONTAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            #container-agenda-financeiro-hoje
+        .compromisso-agenda-cabecalho h3 {
+
+            font-size: 16px;
+
+        }
+
+        /* ==========================================================
+        ID: MOB-075
+        REF: PANEL.STUDY.WEEK.ALIGNMENT.TYPOGRAPHY
+        FUNÇÃO: CENTRALIZAR QUADRO SEMANAL E AUMENTAR FONTE
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .card-estudo .estudo-semana {
+            width: calc(100% - 8px);
+            align-self: center;
+            justify-self: center;
+        }
+
+        /* AUMENTAR FONTE DOS DIAS DA SEMANA */
+        .card-estudo .estudo-semana-dia > span:first-child {
+            font-size: 10px;
+        }
+
+        /* ==========================================================
+        ID: MOB-076
+        REF: PANEL.STUDY.WEEK.FIELDS.WIDTH
+        FUNÇÃO: PADRONIZAR LARGURA DOS CAMPOS SEMANAIS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            /* DIAS DE ESTUDO — REGRA INDEPENDENTE */
+            .card-estudo .estudo-area-esquerda
+        > .estudo-campo:not(.estudo-campo-pendencias) {
+
+            width: 80%;
+            max-width: 80%;
+            align-self: center;
+            transform: translateY(6px);
+        }
+
+        /* PENDÊNCIAS — REGRA INDEPENDENTE */
+        .card-estudo .estudo-area-esquerda
+        > .estudo-campo-pendencias {
+
+            width: 80%;
+            max-width: 80%;
+            align-self: center;
+            margin-top: -5px;
+        }
+
+        /* ÍCONE DIAS DE ESTUDO — ESQUERDA */
+        .card-estudo .estudo-area-esquerda
+        > .estudo-campo:not(.estudo-campo-pendencias)
+        > .estudo-campo-icone {
+            left: -20px;
+        }
+
+        /* ÍCONE PENDÊNCIAS — ESQUERDA */
+        .card-estudo .estudo-area-esquerda
+        > .estudo-campo-pendencias
+        > .estudo-campo-icone {
+            left: -20px;
+        }
+
+        /* DIAS DE ESTUDO — FONTE DAS ABREVIAÇÕES */
+        .card-estudo .estudo-area-esquerda
+        .estudo-dias-lista > span {
+            font-size: 12px;
+        }
+
+        /* PENDÊNCIAS — FONTE DAS ABREVIAÇÕES */
+        .card-estudo .estudo-area-esquerda
+        .estudo-pendencias-lista > span {
+            font-size: 12px;
+        }
+
+        /* ==========================================================
+        ID: MOB-077
+        REF: PANEL.ROUTINE.HEADER.MONTH.DETAILS
+        FUNÇÃO: ALINHAR MÊS E VER DETALHES NA MESMA LINHA
+        PADRÃO: PAINEL FINANCEIRO
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        .card-central.card-painel-novo .rotina-cabecalho {
+
+            grid-template-columns: minmax(0, 1fr) auto auto;
+
+            grid-template-areas:
+                "ident mes detalhes"
+                "progresso progresso progresso";
+
+            row-gap: 10px;
+        }
+
+        /* ==========================================================
+        ID: MOB-078
+        REF: PANEL.STUDY.PRIORITY.WIDTH
+        FUNÇÃO: REDUZIR E CENTRALIZAR O CAMPO PRIORIDADE
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            .card-estudo .estudo-area-central
+        > .estudo-prioridade {
+
+            grid-column: 1 / -1;
+
+            width: 92%;
+            max-width: 92%;
+            min-width: 0;
+
+            justify-self: center;
+            box-sizing: border-box;
+        }
+
+        /* ==========================================================
+        MOB-079 — PAINEL ESTUDO
+        DISTRIBUIÇÃO DOS CAMPOS E AJUSTES DOS ÍCONES
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            /* ÁREA CENTRAL — GRADE DE 10 COLUNAS */
+        .card-estudo .estudo-area-central {
+            grid-template-columns: repeat(10, minmax(0, 1fr));
+        }
+
+        /* ÍCONE DO BOTÃO METAS */
+        .card-estudo .estudo-botao-metas
+        > .estudo-meta-icone {
+            transform: translateX(-2px);
+        }
+
+        /* TEXTO METAS — AUMENTAR FONTE */
+        .card-estudo .estudo-botao-metas > span {
+            font-size: 20px;
+        }
+
+        /* DATA DE INÍCIO — 50% */
+        .card-estudo .estudo-area-central
+        > .estudo-data-inicio {
+            grid-column: 1 / span 5;
+
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+
+            box-sizing: border-box;
+        }
+
+        /* ÍCONE — DATA DE INÍCIO */
+        .card-estudo .estudo-data-inicio
+        > .estudo-campo-icone {
+            transform: translate(-12px, 3px);
+        }
+
+        /* A PARTIR DAS — LARGURA REDUZIDA */
+        .card-estudo .estudo-area-central
+        > .estudo-horario-inicio {
+
+            grid-column: 6 / span 5;
+
+            width: 85%;
+            max-width: 85%;
+            min-width: 0;
+
+            justify-self: start;
+            box-sizing: border-box;
+
+            position: relative;
+            left: 22px;
+        }
+
+        /* ==========================================================
+        ÍCONE — A PARTIR DAS
+        ALTERE O VALOR -43px PARA AJUSTAR A POSIÇÃO HORIZONTAL
+        NEGATIVO = ESQUERDA | POSITIVO = DIREITA
+        ========================================================== */
+
+        .card-estudo .estudo-horario-inicio
+        > .estudo-campo-icone {
+            transform: translate(-22px, -2px);
+        }
+
+        /* HORAS DIÁRIAS — 40% */
+        .card-estudo .estudo-area-central
+        > .estudo-horas-diarias {
+            grid-column: 1 / span 4;
+
+            width: 90%;
+            max-width: 90%;
+            min-width: 0;
+
+            box-sizing: border-box;
+        }
+
+        /* ÍCONE — HORAS DIÁRIAS */
+        .card-estudo .estudo-horas-diarias
+        > .estudo-campo-icone {
+            transform: translate(-10px, -1px);
+        }
+
+        /* METAS — 60% */
+        .card-estudo .estudo-area-central
+        > .estudo-botao-metas {
+            grid-column: 5 / span 6;
+
+            width: 90%;
+            max-width: 90%;
+            min-width: 0;
+
+            box-sizing: border-box;
+            position: relative;
+            left: 14px;
+        }
+
+        /* FONT-SIZE — VALORES DE DATA E HORÁRIO */
+        .card-estudo .estudo-data-inicio .estudo-campo-texto,
+        .card-estudo .estudo-horario-inicio .estudo-campo-texto,
+        .card-estudo .estudo-horas-diarias .estudo-campo-texto {
+            font-size: 15px;
+        }
+
+        /* ==========================================================
+        ID: MOB-080
+        REF: PANEL.ROUTINE.PERIODS.MOBILE.HORIZONTAL
+        FUNÇÃO: ORGANIZAÇÃO DOS CARDS DA ROTINA
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            /* GRADE PRINCIPAL */
+        .card-painel-novo .rotina-conteudo {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-rows: 60px 42px 150px 150px 120px;
+            align-items: stretch;
+            gap: 8px;
+        }
+
+        /* LIBERAR OS ELEMENTOS INTERNOS PARA A GRADE */
+        .card-painel-novo .rotina-coluna-semanal,
+        .card-painel-novo .rotina-coluna-periodos {
+            display: contents;
+        }
+
+        /* SEMANAL */
+        #card-rotina-semanal {
+            grid-column: 1 / -1;
+            grid-row: 1;
+
+            height: 60px;
+            min-height: 60px;
+            max-height: 60px;
+
+            align-self: start;
+            box-sizing: border-box;
+        }
+
+        /* BOTÕES DE PERÍODO */
+        .rotina-periodo-manha {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .rotina-periodo-tarde {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .rotina-periodo-noite {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .card-central.card-painel-novo .rotina-periodo-card {
+            left: 0;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+
+            flex: 0 0 auto;
+
+            align-self: stretch;
+            justify-self: stretch;
+
+            box-sizing: border-box;
+            transform: none;
+        }
+
+        /* PENDENTES — ALTURA REAL DE 120px */
+        #card-rotina-pendente {
+            grid-column: 1 / -1;
+            grid-row: 5;
+            top: 88px;
+
+            height: 100px;
+            min-height: 100px;
+            max-height: 100px;
+
+            align-self: start;
+            box-sizing: border-box;
+        }
+
+        /* LISTA INTERNA */
+        #card-rotina-pendente .rotina-lista-pendencias {
+            min-height: 0;
+            flex: 1 1 auto;
+        }
+
+        /* ONTEM — POSIÇÃO E ALTURA */
+        #card-agenda-ontem {
+            grid-column: 1 / -1;
+            grid-row: 4;
+
+            top: 88px;
+        }
+        /* HOJE — POSIÇÃO E ALTURA */
+        #card-agenda-hoje {
+            grid-column: 1 / -1;
+            grid-row: 3;
+            translate: 0 0;
+        }
+
+        /* MOB-081 — DESLOCAR HORÁRIO E TAREFA PARA A DIREITA */
+        #card-agenda-hoje #lista-agenda-hoje .rotina-horario,
+        #card-agenda-hoje #lista-agenda-hoje .rotina-atividade {
+            transform: translateX(10px);
+        }
+
+        /* MOB-082 — DESLOCAR SOMENTE O TEXTO DAS TAREFAS */
+        #card-agenda-hoje #lista-agenda-hoje
+        .rotina-item-horario > .rotina-atividade {
+            padding-left: 18px;
+        }
+
+                /* MOB-083 — AUMENTAR FONTE DOS NOMES DAS TAREFAS */
+        #card-agenda-hoje #lista-agenda-hoje
+        .rotina-item-horario > .rotina-atividade {
+            font-size: 13px;
+        }
+
+        /* MOB-084 — AUMENTAR MARCADORES DA LISTA HOJE */
+        #card-agenda-hoje #lista-agenda-hoje .rotina-status {
+            transform: scale(1.25);
+            transform-origin: center;
+        }
+
+        /* MOB-085 — DESLOCAR NOMES DAS TAREFAS DE ONTEM */
+        #card-agenda-ontem #lista-agenda-ontem
+        .rotina-item-horario > .rotina-atividade {
+            padding-left: 18px;
+            font-size: 13px;
+        }
+
+        /* DESLOCAR HORÁRIOS DE ONTEM */
+        #card-agenda-ontem #lista-agenda-ontem .rotina-horario {
+            transform: translateX(10px);
+        }
+
+        /* MOB-086 — AUMENTAR MARCADORES DE ONTEM */
+        #card-agenda-ontem #lista-agenda-ontem
+        .rotina-item-horario > .rotina-status {
+            transform: scale(1.25);
+            transform-origin: center;
+        }
+
+        /* MOB-087 — DESLOCAR BARRA DIVISÓRIA E TEXTO */
+        #card-agenda-hoje #lista-agenda-hoje .rotina-item-horario > .rotina-atividade,
+        #card-agenda-ontem #lista-agenda-ontem .rotina-item-horario > .rotina-atividade {
+            transform: translateX(10px);
+        }
+
+        /* MOB-088 — DESLOCAR CONTEÚDO SEM MOVER O ÍCONE */
+        #card-rotina-pendente
+        #lista-pendencias-rotina
+        > .rotina-pendencia-item
+        > :not(.rotina-pendencia-status) {
+            transform: translateX(5px);
+        }
+
+        /* AJUSTE — POSIÇÃO DOS HORÁRIOS */
+        #card-rotina-pendente
+        #lista-pendencias-rotina
+        > .rotina-pendencia-item
+        > .rotina-pendencia-horario {
+            transform: translateX(-2px);
+        }
+
+        /* MOB-089 — ESPAÇAMENTO INTERNO DO DIA DA SEMANA */
+
+        #card-rotina-pendente
+        #lista-pendencias-rotina
+        > .rotina-pendencia-item {
+            grid-template-columns: 13px 48px 69px minmax(100px, max-content);
+            text-indent: 8px;
+        }
+
+        /* MOB-090 — AUMENTAR FONTE DAS PENDÊNCIAS */
+        #card-rotina-pendente #lista-pendencias-rotina
+        > .rotina-pendencia-item
+        > .rotina-pendencia-horario,
+        #card-rotina-pendente #lista-pendencias-rotina
+        > .rotina-pendencia-item
+        > .rotina-pendencia-dia,
+        #card-rotina-pendente #lista-pendencias-rotina
+        > .rotina-pendencia-item
+        > .rotina-pendencia-atividade {
+            font-size: 12px;
+        }
+
+        #card-rotina-pendente
+        #lista-pendencias-rotina
+        > .rotina-pendencia-item
+        > .rotina-pendencia-dia {
+            padding-left: 10px;
+            padding-right: 10px;
+            box-sizing: border-box;
+            text-indent: 4px;
+        }
+
+        /* ALTURA DE 150px — SOMENTE OS DOIS CARDS DE AGENDA */
+        #card-agenda-ontem,
+        #card-agenda-hoje {
+            width: 100%;
+            min-width: 0;
+
+            height: 150px;
+            min-height: 150px;
+            max-height: 150px;
+
+            align-self: stretch;
+            box-sizing: border-box;
+        }
+
+        /* LISTA — OCUPAR TODA A LARGURA DISPONÍVEL */
+        #card-agenda-ontem #lista-agenda-ontem {
+            grid-template-columns: minmax(0, 1fr);
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            row-gap: 9px;
+        }
+
+        /* LINHAS — ACOMPANHAR A LARGURA DA LISTA */
+        #card-agenda-ontem
+        #lista-agenda-ontem
+        > .rotina-item-horario {
+            width: 110%;
+            min-width: 0;
+            max-width: none;
+
+            justify-self: stretch;
+            box-sizing: border-box;
+        }
+
+        /* LISTA — OCUPAR TODA A LARGURA DISPONÍVEL */
+        #card-agenda-hoje #lista-agenda-hoje {
+            grid-template-columns: minmax(0, 1fr);
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            row-gap: 9px;
+        }
+
+        /* LINHAS — ACOMPANHAR A LARGURA DA LISTA */
+        #card-agenda-hoje
+        #lista-agenda-hoje
+        > .rotina-item-horario {
+            width: 110%;
+            min-width: 0;
+            max-width: none;
+
+            justify-self: stretch;
+            box-sizing: border-box;
+        }
+
+        #card-rotina-pendente #lista-pendencias-rotina {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        #card-rotina-pendente
+        #lista-pendencias-rotina
+        > .rotina-pendencia-item {
+            width: calc(100% + 30px);
+            min-width: 0;
+            max-width: none;
+
+            justify-self: start;
+            box-sizing: border-box;
+        }
+
+        /* HOJE — REDUZIR LARGURA DO CABEÇALHO CENTRALIZADO */
+        #card-agenda-hoje > .rotina-agenda-cabecalho {
+            width: 85%;
+            max-width: 85%;
+            min-width: 0;
+
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+
+            transform: none;
+            box-sizing: border-box;
+        }
+
+        /* ==========================================================
+        ID: MOB-091
+        REF: PANEL.FINANCIAL.CARDS.ORDER
+        FUNÇÃO: INVERTER CONTAS HOJE E CONTAS VENCIDAS
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+            /* CONTAS — HOJE PRIMEIRO */
+        .card-financeiro > .financeiro-agenda-hoje-wrap {
+            order: 1;
+        }
+
+        /* CONTAS VENCIDAS — SEGUNDO */
+        .card-financeiro > .financeiro-vencidas {
+            order: 2;
+        }
+
+        /* MOB-092 — DESLOCAR CABEÇALHO E CATEGORIAS JUNTOS */
+        #painel-compromisso > .compromisso-cabecalho {
+            top: -18px;
+        }
+
+        /* ==========================================================
+        ID: MOB-093
+        REF: PANEL.COMMITMENT.HEADER.IDENTIFICATION.POSITION
+        FUNÇÃO: DESLOCAR ÍCONE E TÍTULO PARA A ESQUERDA
+        ESCOPO: SOMENTE MOBILE
+            ========================================================== */
+
+        #painel-compromisso .compromisso-identificacao {
+            transform: translateX(-10px);
+        }
+
+        /* MOB-095 — DESLOCAR SOMENTE O RÓTULO PENDENTES */
+        #painel-compromisso .compromisso-pendencias
+        > .compromisso-pendencias-rotulo {
+            top: -20px;
+            font-size: 18px;
+            background: #1b1012;
+
+            left: 55%;
+            translate: -50% 0;
+            border: none;
+            border-radius: 10px;
+
+            width: max-content;
+            min-width: 62px;
+
+            height: auto;
+            min-height: 28px;
+            padding: 1px 6px;
+
+            line-height: 13px;
+            box-sizing: border-box;
+        }
+
+        #painel-lembrete .lembrete-proximos-titulo {
+            translate: 0 -4px;
+        }
+
+        /* MOBILE — CENTRALIZAR E DIMENSIONAR PRÓXIMOS LEMBRETES */
+        #painel-lembrete .lembrete-proximos {
+            left: 0;
+            margin-top:115px;
+
+            width: 102%;
+            align-self: center;
+            margin-left: 0;
+            margin-right: 0;
+
+            height: 100px;
+            min-height: 100px;
+            max-height: 100px;
+        }
+
+        /* ==========================================================
+        MOBILE — BARRA HORIZONTAL DOS PRÓXIMOS LEMBRETES
+        ========================================================== */
+
+        /* SUBCONTAINER — POSIÇÃO, ALTURA E LIMITES DE LARGURA */
+        #painel-lembrete .lembrete-proximos-lista {
+            margin-top: 0px;
+
+            overflow-x: auto;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+
+            height: 72px;
+            max-height: 72px;
+
+            width: calc(100% + 12px);
+            max-width: none;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        /* 3 — LINHAS: AMPLIAÇÃO HORIZONTAL */
+        #painel-lembrete .lembrete-proximos-lista
+        > li.lembrete-proximos-item {
+            width: calc(100% + 200px);
+            min-width: calc(100% + 200px);
+            max-width: none;
+            flex: 0 0 auto;
+            box-sizing: border-box;
+        }
+
+        /* MOBILE — OCULTAR BARRA VERTICAL DOS PRÓXIMOS LEMBRETES */
+        #barra-vertical-proximos-lembretes {
+            display: none;
+        }
+
+        /* BARRA HORIZONTAL */
+        #barra-horizontal-proximos-lembretes {
+            display: block;
+            width: 80%;
+            height: 12px;
+            margin: 4px auto 0;
+
+            cursor: pointer;
+            user-select: none;
+            touch-action: none;
+            box-sizing: border-box;
+        }
+
+        /* TRILHO */
+        #barra-horizontal-proximos-lembretes
+        .rotina-barra-trilho {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+            border: 1px solid rgba(65, 155, 91, .48);
+            border-radius: 999px;
+
+            background: #101a14;
+            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .65);
+
+            box-sizing: border-box;
+        }
+
+        /* CURSOR */
+        #barra-horizontal-proximos-lembretes
+        .rotina-barra-cursor {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 30%;
+            height: 100%;
+
+            border: 2px solid transparent;
+            border-radius: 999px;
+
+            background: linear-gradient(
+                90deg,
+                #70f3a1,
+                #20c969,
+                #087b3e
+                );
+
+            background-clip: content-box;
+            box-sizing: border-box;
+            cursor: grab;
+
+        }
+    }
+
+    /* ==========================================================
+    MOBILE — AJUSTES CONSOLIDADOS DO PAINEL LEMBRETE
+    Mantém posições, alinhamentos, ordem e deslocamentos atuais.
+    ========================================================== */
+    @media (max-width: 652px) {
+
+        /* CARD HOJE */
+        #painel-lembrete #card-lembrete-hoje {
+            left: 15px;
+            top: -6px;
+            order: -1;
+        }
+
+        /* CARD ONTEM */
+        #painel-lembrete .lembrete-resumo-ontem {
+            transform: translateX(15px);
+            top: -18px;
+        }
+
+        /* CARD PENDÊNCIAS */
+        #painel-lembrete #card-lembrete-pendencias {
+            left: 15px;
+            top: -20px;
+            order: 1;
+        }
+
+        /* CENTRALIZAÇÃO DOS TRÊS TÍTULOS */
+        #painel-lembrete #card-lembrete-hoje > h3.estudo-campo-rotulo,
+        #painel-lembrete #card-lembrete-ontem > h3.estudo-campo-rotulo,
+        #painel-lembrete #card-lembrete-pendencias > h3.estudo-campo-rotulo {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* DESLOCAMENTO SOMENTE DAS LISTAS */
+        #painel-lembrete #lista-lembrete-ontem-1 {
+            transform: translateX(7px);
+        }
+
+        #painel-lembrete #lista-lembrete-pendencias-1 {
+            transform: translateX(7px);
+        }
+
+        /* RESUMO SEMANAL NO TOPO DO LEMBRETE */
+        #painel-lembrete .lembrete-compromissos-semana {
+            display: flex;
+            align-self: center;
+            width: 95%;
+            max-width: 100%;
+        }
+    }
+
+    /* ==========================================================
+    MOB-096 — QUATRO CAMPOS NAS DESPESAS DE HOJE
+    ESCOPO: SOMENTE MOBILE
+        ========================================================== */
+
+    /* MOBILE — ESTRUTURA, ALTURA E APARÊNCIA DOS QUATRO CAMPOS */
+    @media (max-width: 652px) {
+
+        /* MOB-096 — GRADE DOS QUATRO CAMPOS */
+        #lista-financeiro-hoje .compromisso-evento-dados {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-areas:
+                "despesa vencimento"
+                "campo3 campo4";
+            column-gap: 4px;
+            row-gap: 12px;
+        }
+
+        /* CAMPO 1 — DESPESA */
+        #lista-financeiro-hoje
+        .compromisso-evento-dado:nth-child(1) {
+            grid-area: despesa;
+            width: calc(100% + 24px);
+            justify-self: start;
+        }
+
+        /* CAMPO 2 — VENCIMENTO */
+        #lista-financeiro-hoje
+        .compromisso-evento-dado:nth-child(2) {
+            grid-area: vencimento;
+            width: calc(100% - 40px);
+            justify-self: end;
+        }
+
+        /* CAMPO 3 */
+        #lista-financeiro-hoje
+        .compromisso-evento-dado:nth-child(3) {
+            grid-area: campo3;
+            transform: translateX(14px);
+        }
+
+        /* CAMPO 4 */
+        #lista-financeiro-hoje
+        .compromisso-evento-dado:nth-child(4) {
+            grid-area: campo4;
+            width: calc(100% - 40px);
+            justify-self: end;
+        }
+
+        #lista-financeiro-hoje .campo-extra-mobile {
+            display: flex;
+        }
+
+        /* MOB-097 — ALTURA DOS ITENS DE DESPESA */
+        .card-financeiro > .financeiro-agenda-hoje-wrap
+        #lista-financeiro-hoje > .compromisso-evento {
+            min-height: 100px;
+            height: auto;
+        }
+
+        /* MOB-098 — REMOVER BORDAS E SUBIR SOMENTE OS CAMPOS */
+        .card-financeiro > .financeiro-agenda-hoje-wrap
+        #lista-financeiro-hoje .compromisso-evento-dado {
+            border: none;
+            outline: none;
+            top: 0;
+        }
+    }
+
+    /* MOB-099 — REORGANIZAR ELEMENTOS DO PAINEL ESTUDO
+    SOMENTE MOBILE */
+
+    @media (max-width: 652px) {
+
+    /* LIBERAR OS ELEMENTOS INTERNOS PARA A GRADE */
+    .card-estudo .estudo-area-esquerda {
+        display: contents;
+    }
+
+    /* 1 — CÍRCULOS DA SEMANA: PERMANECEM EM CIMA */
+    .card-estudo .estudo-area-esquerda > .estudo-semana {
+        order: 1;
+    }
+
+    /* 2 — PRIORIDADE, DATAS, HORAS E METAS */
+    .card-estudo .estudo-area-central {
+        order: 2;
+    }
+
+    /* 3 — DIAS DE ESTUDO */
+    .card-estudo .estudo-area-esquerda
+    > .estudo-campo:not(.estudo-campo-pendencias) {
+        order: 3;
+    }
+
+    /* 4 — PENDÊNCIAS */
+    .card-estudo .estudo-area-esquerda
+    > .estudo-campo-pendencias {
+        order: 4;
+    }
+
+    /* 5 — ATIVIDADES */
+    .card-estudo .estudo-area-direita {
+        order: 5;
+    }
+
+    /* CENTRALIZAR OS DOIS CAMPOS NO PAINEL */
+    .card-estudo .estudo-area-esquerda > .estudo-campo:not(.estudo-campo-pendencias),
+    .card-estudo .estudo-area-esquerda > .estudo-campo-pendencias {
+    justify-self: center;
+}
+
+}
+
+/* ==========================================================
+ID: MOB-100
+REF: PANEL.ROUTINE.AGENDA.TODAY.ICON.ALIGN
+FUNÇÃO: DESLOCAR SOMENTE O ÍCONE DE CALENDÁRIO
+ESCOPO: SOMENTE MOBILE
+========================================================== */
+
+@media (max-width: 652px) {
+    #card-agenda-hoje > .rotina-agenda-cabecalho
+    > .rotina-agenda-icone {
+        position: relative;
+        left: -18px;
+    }
+}
+
+/* ==========================================================
+ID: MOB-101
+REF: PANEL.ROUTINE.AGENDA.TODAY.ARROWS.ALIGN
+FUNÇÃO: SUBIR AS DUAS SETAS DO CABEÇALHO
+ESCOPO: SOMENTE MOBILE
+========================================================== */
+
+@media (max-width: 652px) {
+    #card-agenda-hoje > .rotina-agenda-cabecalho
+    > .rotina-agenda-seta {
+        top: calc(50% - 2px);
+    }
+}
+
+/* ==========================================================
+ID: MOB-102
+REF: PANEL.ROUTINE.AGENDA.TODAY.ARROWS.HORIZONTAL
+FUNÇÃO: DESLOCAR AS SETAS PARA DENTRO
+ESCOPO: SOMENTE MOBILE
+========================================================== */
+
+@media (max-width: 652px) {
+
+    #card-agenda-hoje > .rotina-agenda-cabecalho
+    > .rotina-agenda-seta-anterior {
+        left: 7px;
+        right: auto;
+    }
+
+    #card-agenda-hoje > .rotina-agenda-cabecalho
+    > .rotina-agenda-seta-proxima {
+        right: 7px;
+        left: auto;
+    }
+}
+
+/* ==========================================================
+ID: MOB-103
+REF: PANEL.ROUTINE.AGENDA.TODAY.TITLE.ALIGN
+FUNÇÃO: DESLOCAR O TÍTULO HOJE PARA A ESQUERDA
+ESCOPO: SOMENTE MOBILE
+========================================================== */
+
+@media (max-width: 652px) {
+    #card-agenda-hoje > .rotina-agenda-cabecalho > h3 {
+        translate: -6px 0;
+    }
+}
+
+@media (max-width: 652px) {
+    #card-rotina-pendente #lista-pendencias-rotina,
+    #card-agenda-ontem #lista-agenda-ontem,
+    #card-agenda-hoje #lista-agenda-hoje {
+        overscroll-behavior-y: auto;
+    }
+}
+
+/* ==========================================================
+ID: MOB-104
+REF: PANEL.COMMITMENT.MOBILE.ORDER
+FUNÇÃO: ORGANIZAÇÃO DO CAMPO PRIORIDADE E POSIÇÃO DOS PAINÉIS
+ESCOPO: SOMENTE MOBILE
+========================================================== */
+
+@media (max-width: 652px) {
+
+    /* LIBERAR ELEMENTOS INTERNOS PARA A GRADE MOBILE */
+
+    #painel-compromisso .compromisso-coluna-lateral {
+        display: contents;
+    }
+
+
+    /* CONTÊINER DO CAMPO PRIORIDADE */
+
+    #painel-compromisso .compromisso-prioridade-slot {
+        display: flex;
+
+        grid-column: 1;
+        grid-row: 1;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 60px;
+        min-height: 60px;
+
+        box-sizing: border-box;
+    }
+
+    /* CHECK — COMPROMISSO — ALINHAR DATA E HORÁRIO À DIREITA */
+
+#painel-compromisso .compromisso-prioridade-slot
+.compromisso-prioridade-calendario-icone {
+    margin-left: auto !important;
+}
+
+    /* CAMPO PRIORIDADE */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade {
+
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 4px;
+
+        width: 96%;
+        max-width: 96%;
+        min-width: 0;
+
+        height: 40px;
+
+        flex: 0 1 96%;
+
+        margin: 0 auto;
+
+        transform: translateY(-30px);
+
+        box-sizing: border-box;
+    }
+
+
+    /* RÓTULO */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .estudo-prioridade-rotulo {
+        white-space: nowrap;
+    }
+
+
+    /* REORGANIZAR OS ELEMENTOS EM UMA ÚNICA LINHA */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > .estudo-prioridade-icone,
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > .estudo-prioridade-texto,
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > .compromisso-prioridade-calendario-icone,
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > .compromisso-prioridade-data,
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > .compromisso-prioridade-relogio-icone,
+
+    #painel-compromisso .compromisso-prioridade-slot
+    > .compromisso-prioridade
+    > .compromisso-prioridade-horario {
+
+        position: static !important;
+
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        transform: none !important;
+
+        margin: 0 !important;
+
+        flex: 0 0 auto !important;
+
+        align-self: center;
+    }
+
+
+    /* ORDEM 1 — ALFINETE */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .estudo-prioridade-icone {
+        order: 1;
+
+        width: 18px;
+        height: 18px;
+    }
+
+    /* CHECK — COMPROMISSO — SUBIR ALFINETE E CONSULTA */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .estudo-prioridade-icone,
+    #painel-compromisso .compromisso-prioridade-slot
+    .estudo-prioridade-texto {
+        translate: 0 -px;
+    }
+
+
+    /* ORDEM 2 — TEXTO CONSULTA */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .estudo-prioridade-texto {
+        order: 2;
+
+        max-width: none;
+        overflow: visible;
+
+        white-space: nowrap;
+        text-overflow: clip;
+    }
+
+
+    /* ORDEM 3 — CALENDÁRIO */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .compromisso-prioridade-calendario-icone {
+        order: 3;
+
+        width: 18px;
+        height: 18px;
+
+        color: #39d879 !important;
+    }
+
+
+    /* ORDEM 4 — DATA */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .compromisso-prioridade-data {
+        order: 4;
+
+        display: inline-flex;
+        align-items: center;
+
+        height: 19px;
+
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+
+        white-space: nowrap;
+    }
+
+
+    /* ORDEM 5 — RELÓGIO */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .compromisso-prioridade-relogio-icone {
+        order: 5;
+
+        width: 22px;
+        height: 22px;
+
+        color: #39d879;
+    }
+
+
+    /* ORDEM 6 — HORÁRIO */
+
+    #painel-compromisso .compromisso-prioridade-slot
+    .compromisso-prioridade-horario {
+        order: 6;
+
+        display: inline-flex;
+        align-items: center;
+
+        height: 19px;
+
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+
+        white-space: nowrap;
+    }
+
+
+    /* ÁREA VAZIA — PRESERVAR POSIÇÃO ORIGINAL */
+
+    #painel-compromisso .compromisso-conteudo::before {
+        content: "";
+        display: block;
+
+        grid-column: 1;
+        grid-row: 1;
+
+        width: 100%;
+        height: 60px;
+        min-height: 60px;
+
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+
+    /* HOJE — SEGUNDA POSIÇÃO */
+
+    #painel-compromisso #agenda-compromissos-hoje {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+
+    /* PENDENTES — TERCEIRA POSIÇÃO */
+
+    #painel-compromisso .compromisso-pendencias {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+}
+
+
+/* ==========================================================
+CHECK — COMPENSAÇÃO DA LARGURA DO CAMPO
+========================================================== */
+
+@media (max-width: 650px) {
+
+    #painel-compromisso .compromisso-prioridade-slot {
+        position: relative;
+        left: 7.5px;
+        width: calc(100% + 15px);
+    }
+
+}
+
+
+/* ==========================================================
+CHECK — COMPROMISSO — TRÊS CATEGORIAS HORIZONTAIS
+========================================================== */
+
+@media (max-width: 652px) {
+
+    #painel-compromisso .compromisso-categorias {
+        display: grid;
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: 30px;
+
+        align-items: center;
+        justify-self: center;
+
+        gap: 8px;
+
+        width: 96%;
+        max-width: 96%;
+        min-width: 0;
+
+        margin: 0 auto;
+
+        box-sizing: border-box;
+    }
+
+    #painel-compromisso .compromisso-categoria {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        height: 30px;
+        min-height: 30px;
+
+        box-sizing: border-box;
+    }
+
+    /* CHECK — COMPROMISSO — DESLOCAR GRUPO DE DATA E HORÁRIO */
+
+#painel-compromisso .compromisso-prioridade-calendario-icone,
+#painel-compromisso .compromisso-prioridade-data,
+#painel-compromisso .compromisso-prioridade-relogio-icone,
+#painel-compromisso .compromisso-prioridade-horario {
+    translate: 40px  !important;
+}
+
+/* CHECK — COMPROMISSO — DESLOCAR ALFINETE E TEXTO À ESQUERDA */
+
+#painel-compromisso .compromisso-prioridade-slot
+.estudo-prioridade-icone,
+#painel-compromisso .compromisso-prioridade-slot
+.estudo-prioridade-texto {
+    translate: -40px 0 !important;
+}
+
+/* CHECK — COMPROMISSO — DESLOCAR CALENDÁRIO E DATA */
+
+#painel-compromisso .compromisso-prioridade-calendario-icone,
+#painel-compromisso .compromisso-prioridade-data {
+    translate: 30px 0 !important;
+}
+
+/* CHECK — COMPROMISSO — SUBIR CONTEÚDO INTERNO */
+
+#painel-compromisso .compromisso-prioridade-slot
+> .compromisso-prioridade
+> :not(.estudo-prioridade-rotulo) {
+    position: relative !important;
+    top: 2px !important;
+}
+
+/* CHECK — COMPROMISSO — SUBIR ALFINETE E CONSULTA */
+
+#painel-compromisso .compromisso-prioridade-slot
+> .compromisso-prioridade
+> .estudo-prioridade-icone,
+
+#painel-compromisso .compromisso-prioridade-slot
+> .compromisso-prioridade
+> .estudo-prioridade-texto {
+
+    position: relative !important;
+    top: 0px !important;
+
+
+}
+
+/* ==========================================================
+ID: MOB-105
+REF: PANEL.COMMITMENT.MOBILE.CONTAINERS.POSITION
+FUNÇÃO: DESLOCAR HOJE E PENDENTES PARA BAIXO
+ESCOPO: SOMENTE MOBILE
+========================================================== */
+
+@media (max-width: 652px) {
+
+    /* CONTÊINER HOJE */
+    #painel-compromisso #agenda-compromissos-hoje.compromisso-agenda {
+        top: 20px;
+    }
+
+    /* CONTÊINER PENDENTES */
+    #painel-compromisso .compromisso-pendencias {
+        top: 50px;
+    }
+
+}
+
+    /* ==========================================================
+       MOB-106 | REF: PANEL.COMMITMENT.EVENT.FIELDS.MOBILE
+       FUNÇÃO: LOCAL E DATA NA PRIMEIRA LINHA; HORÁRIO ABAIXO
+       ESCOPO: SOMENTE MOBILE — LISTAS HOJE/ONTEM
+    ========================================================== */
+
+    @media (max-width: 652px) {
+
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento .compromisso-evento-dados,
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento .compromisso-evento-dados {
+            grid-template-columns: repeat(10, minmax(0, 1fr));
+            grid-template-areas:
+                "local local local local local local data data data data"
+                "horario horario horario aviso aviso aviso aviso aviso aviso aviso";
+            column-gap: 8px;
+            row-gap: 10px;
+            align-items: stretch;
+        }
+
+        /* MOB-106 — ALINHAR VALOR DO LOCAL À DIREITA */
+
+        @media (max-width: 652px) {
+
+            #painel-compromisso #lista-compromissos-hoje
+            > .compromisso-evento:nth-of-type(3)
+            .compromisso-evento-dados
+            > .compromisso-evento-dado:first-child
+            > strong {
+
+                text-align: right;
+                transform: translateX(-6px);
+
+            }
+
+        }
+
+        /* LOCAL — DESLOCAR SOMENTE O TEXTO PARA ESQUERDA */
+
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-dado:first-child > strong,
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-dado:first-child > strong {
+        position: relative;
+
+        left: -35px;
+        top: 2px;
+
+        transform: none;
+
+        }
+
+        /* LOCAL — PRIMEIRA COLUNA */
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-dado:first-child,
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-dado:first-child {
+            grid-area: local;
+            width: auto;
+            max-width: 100%;
+            justify-self: stretch;
+            left: auto;
+            top: auto;
+            transform: translateY(-4px);
+            margin: 0;
+        }
+
+        /* DATA — POSICIONAMENTO EXCLUSIVO DO TEXTO */
+
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(2) > strong,
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(2) > strong {
+
+            position: relative;
+            left: -8px;
+            top: 2px;
+        }
+
+        /* HORÁRIO — POSICIONAMENTO EXCLUSIVO DO TEXTO */
+
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(3) > strong,
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(3) > strong {
+
+            position: relative;
+            left: -8px;
+            top: 2px;
+        }
+
+        /* AVISO — OCUPA A ÁREA DIREITA DA LINHA INFERIOR */
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-aviso,
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento .compromisso-evento-dados
+        > .compromisso-evento-aviso {
+            grid-area: aviso;
+            width: auto;
+            min-width: 0;
+            justify-self: stretch;
+            margin: 0;
+        }
+    }
+
+    /* ==========================================================
+       MOB-107 | REF: PANEL.COMMITMENT.PENDING.FIELDS.MOBILE
+       FUNÇÃO: REUNIR LOCAL, DATA E HORÁRIO NA MESMA GRADE
+       ESCOPO: SOMENTE MOBILE — PENDENTES
+    ========================================================== */
+
+    @media (max-width: 652px) {
+
+        /* MANTÉM O VIEWPORT DA LISTA COM A ALTURA ORIGINAL */
+        #painel-compromisso .compromisso-pendencias-viewport {
+            flex: 0 0 205px;
+            height: 205px;
+            min-height: 205px;
+            max-height: 205px;
+        }
+
+        #painel-compromisso
+        .compromisso-pendencias-viewport
+        > #lista-compromissos-pendentes {
+            height: 100%;
+            min-height: 0;
+            max-height: 100%;
+        }
+
+        /* REDUZ O ESPAÇAMENTO INTERNO PARA COMPENSAR A SEGUNDA LINHA */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item {
+            gap: 2px;
+            padding: 5px 8px 6px;
+        }
+
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-cabecalho {
+            min-height: 16px;
+            margin-bottom: 6px;
+        }
+
+        /* GRADE — LOCAL E DATA LADO A LADO; HORÁRIO ABAIXO */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados {
+            display: grid;
+            grid-template-columns: repeat(10, minmax(0, 1fr));
+            grid-template-areas:
+                "local local local local local local data data data data"
+                "horario horario horario aviso aviso aviso aviso aviso aviso aviso";
+            column-gap: 6px;
+            row-gap: 4px;
+            align-items: stretch;
+            min-width: 0;
+        }
+
+        /* MOB-107 — DESLOCAR RÓTULOS LOCAL E DATA PARA CIMA */
+
+        /* LOCAL — 7px PARA A ESQUERDA */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(1) > span {
+            top: -8px;
+            left: calc(50% - 50px);
+        }
+
+        /* DATA — MANTER POSIÇÃO ATUAL */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(2) > span {
+            top: -8px;
+            left: calc(50% - 22px);
+        }
+
+        /* BASE DOS TRÊS CAMPOS — SEM DESLOCAMENTOS HERDADOS */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado {
+            position: relative;
+            width: auto;
+            min-width: 0;
+            max-width: 100%;
+            margin: 0;
+            padding: 5px 3px 2px;
+            transform: none;
+            box-sizing: border-box;
+        }
+
+        /* LOCAL — PRIMEIRA COLUNA */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(1) {
+            grid-area: local;
+            justify-self: stretch;
+
+            height: 28px;
+            min-height: 28px;
+
+            box-sizing: border-box;
+            transform: translateY(-10px);
+        }
+
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(2) {
+            grid-area: data;
+            justify-self: stretch;
+
+            height: 28px;
+            min-height: 28px;
+
+            box-sizing: border-box;
+            transform: translateY(-10px);
+        }
+
+        /* HORÁRIO — LINHA INFERIOR INTEIRA */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(3) {
+            grid-area: horario;
+            justify-self: stretch;
+        }
+
+        /* AVISO — DIREITA DO HORÁRIO */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-aviso {
+            grid-area: aviso;
+            justify-self: stretch;
+        }
+
+    }
+
+    /* MOB-108 | REF: PANEL.COMMITMENT.REMINDER_FIELD
+       CAMPO DE AVISO COM DOIS RÓTULOS FLUTUANTES — SEM ÍCONES */
+    .compromisso-evento-aviso {
+        display: none;
+    }
+
+    @media (max-width: 652px) {
+        #painel-compromisso .compromisso-evento-dados
+        > .compromisso-evento-aviso {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr);
+            align-items: center;
+            gap: 4px;
+            min-width: 0;
+            min-height: 16px;
+            padding: 1px 5px 0;
+            box-sizing: border-box;
+            overflow: visible;
+        }
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+            padding: 0;
+        }
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo > span {
+
+            position: absolute;
+            top: -6px;
+            left: 7px;
+            z-index: 2;
+
+            display: inline-block;
+            width: max-content;
+            max-width: calc(100% - 14px);
+
+            padding: 0 4px;
+
+            border: 1px solid;
+            border-radius: 3px;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            line-height: 12px;
+
+            white-space: nowrap;
+            transform: none;
+        }
+
+        /* ==========================================================
+        MOB-109 — ALINHAMENTO DOS TÍTULOS DO AVISO
+        REFERÊNCIA VISUAL: TÍTULO HORÁRIO
+        ========================================================== */
+
+        /* ESTICAR OS CAMPOS INTERNOS */
+        #painel-compromisso .compromisso-evento-aviso {
+            align-items: stretch;
+        }
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo {
+            align-self: stretch;
+            min-height: 16px;
+        }
+
+        /* ME AVISE E ÀS — MESMA POSIÇÃO DE REFERÊNCIA */
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo:first-child > span,
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo:last-child > span {
+
+            position: absolute;
+
+            top: -9px;
+            left: 2px;
+            right: auto;
+            bottom: auto;
+
+            transform: none;
+
+            font-size: 9px;
+            font-weight: 700;
+            line-height: 12px;
+
+            margin: 0;
+        }
+
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo > strong {
+            position: relative;
+            z-index: 1;
+            display: block;
+            min-width: 0;
+            color: #e7f1e9;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 13.75px;
+            text-align: center;
+
+            left: -20px;
+            top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* MOB-109 — DESLOCAR SOMENTE O HORÁRIO DO AVISO */
+        #painel-compromisso .compromisso-evento-aviso
+        .compromisso-aviso-campo:last-child > strong {
+            left: -12px;
+        }
+
+        /* HOJE/ONTEM — CONTORNO E RÓTULOS VERDES */
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento-dados > .compromisso-evento-aviso,
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento-dados > .compromisso-evento-aviso {
+            border-color: rgba(80, 220, 115, .65);
+        }
+
+        #painel-compromisso #lista-compromissos-hoje
+        .compromisso-evento-aviso .compromisso-aviso-campo > span,
+        #painel-compromisso #lista-compromissos-ontem
+        .compromisso-evento-aviso .compromisso-aviso-campo > span {
+            border-color: #39ed80;
+            background: #101812;
+            color: #39ed80;
+        }
+
+        /* PENDENTES — RÓTULOS VERMELHOS */
+        #painel-compromisso #lista-compromissos-pendentes
+        .compromisso-evento-aviso .compromisso-aviso-campo > span {
+            border-color: rgba(224, 87, 96, .7);
+            background: #241316;
+            color: #ff9ba2;
+        }
+
+        /* PENDENTES — TEXTO NO TOM DOS DEMAIS CAMPOS */
+        #painel-compromisso #lista-compromissos-pendentes
+        .compromisso-evento-aviso .compromisso-aviso-campo > strong {
+            color: #f4e7e8;
+        }
+    }
+
+    /* MOB-RESTORE — OCULTAR CARROSSEL DURANTE RESTAURAÇÃO */
+
+    @media (max-width: 652px) {
+
+    html.check-restaurando-painel .grade-cards {
+        visibility: hidden;
+    }
+
+}
+
+} /* Fecha @layer responsive */
