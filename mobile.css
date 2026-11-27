@@ -1622,7 +1622,7 @@
         /* ÍCONE DO BOTÃO METAS */
         .card-estudo .estudo-botao-metas
         > .estudo-meta-icone {
-            transform: translateX(-22px);
+            transform: translateX(-2px);
         }
 
         /* TEXTO METAS — AUMENTAR FONTE */
@@ -2491,6 +2491,23 @@ ESCOPO: SOMENTE MOBILE
             align-items: stretch;
         }
 
+        /* MOB-106 — ALINHAR VALOR DO LOCAL À DIREITA */
+
+        @media (max-width: 652px) {
+
+            #painel-compromisso #lista-compromissos-hoje
+            > .compromisso-evento:nth-of-type(3)
+            .compromisso-evento-dados
+            > .compromisso-evento-dado:first-child
+            > strong {
+
+                text-align: right;
+                transform: translateX(-6px);
+
+            }
+
+        }
+
         /* LOCAL — DESLOCAR SOMENTE O TEXTO PARA ESQUERDA */
 
         #painel-compromisso #lista-compromissos-ontem
@@ -2624,6 +2641,26 @@ ESCOPO: SOMENTE MOBILE
             row-gap: 4px;
             align-items: stretch;
             min-width: 0;
+        }
+
+        /* MOB-107 — DESLOCAR RÓTULOS LOCAL E DATA PARA CIMA */
+
+        /* LOCAL — 7px PARA A ESQUERDA */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(1) > span {
+            top: -8px;
+            left: calc(50% - 50px);
+        }
+
+        /* DATA — MANTER POSIÇÃO ATUAL */
+        #painel-compromisso #lista-compromissos-pendentes
+        > .compromisso-pendencia-item
+        > .compromisso-evento-dados
+        > .compromisso-evento-dado:nth-child(2) > span {
+            top: -8px;
+            left: calc(50% - 22px);
         }
 
         /* BASE DOS TRÊS CAMPOS — SEM DESLOCAMENTOS HERDADOS */
